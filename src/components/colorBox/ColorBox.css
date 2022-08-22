@@ -6,3 +6,33 @@
     position: relative;
     cursor: pointer;
 }
+
+.copy-element-container{}
+
+.box-content{}
+
+.copy-element-btn{
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    background: #ffffff50;
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 30px;
+    outline: none;
+    border: none;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -50px;
+    opacity: 0;
+}
+
+.ColorBox:hover .copy-element-btn{
+    opacity:1;
+    transition: .5s;
+}
+
+.see-more{}
