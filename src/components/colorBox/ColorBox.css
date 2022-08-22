@@ -5,11 +5,10 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
+    margin-bottom: -3.5px;
 }
 
 .copy-element-container{}
-
-.box-content{}
 
 .copy-element-btn{
     width: 100px;
@@ -35,4 +34,28 @@
     transition: .5s;
 }
 
-.see-more{}
+.box-content{
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    padding: 10px;
+    font-size: 12px;
+    color:#000000;
+    letter-spacing: 1px;
+    text-transform: uppercase;    
+}
+
+.see-more{
+    width: 60px;
+    height: 30px;
+    background: #ffffff50;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    text-transform: uppercase;
+}
