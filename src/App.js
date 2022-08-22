@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Palette palette={seedPalettes[4]} />
+        <Palette {...seedPalettes} />
       </div>
     </div>
   );
