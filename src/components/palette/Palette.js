@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ColorBox from '../colorBox/ColorBox';
+import NavBar from '../navBar/NavBar';
 import './Palette.css';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 
 class Palette extends Component {
   constructor(props){
@@ -30,14 +29,20 @@ class Palette extends Component {
 
     return (
       <div className='Palette'>
-        {/* palette navbar goes here */}
-        <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevelValue}/>
+
+        {/* <div className='Palette-slider-container'>
+          <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevelValue}/>
+        </div> */}
+
+        <NavBar changeLevelValue={this.changeLevelValue} level={level} />
+        
         <div className='Palette-colors'>
-            {/* color boxes go here */}
             {colorValues}
         </div>
+
         {/* palette footer goes here */}
         {/* <div className='Palette-footer'></div> */}
+
       </div>
     )
   }
