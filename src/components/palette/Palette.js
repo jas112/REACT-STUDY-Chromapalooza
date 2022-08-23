@@ -2,22 +2,36 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ColorBox from '../colorBox/ColorBox';
 import './Palette.css';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 class Palette extends Component {
-    getPaletteColors(){
-        let colors = this.props.colors.map(color => (
-            <ColorBox backgroundColor={color.color} name={color.name} key={uuidv4()} />
-        ));
-        return colors;
-    }
-  render() {
+  constructor(props){
+    super(props);
+    this.state = { level: 500};
+    this.changeLevelValue = this.changeLevelValue.bind(this);
+  }
 
-    const colorValues = this.getPaletteColors();
+  changeLevelValue(level){
+    console.log(`newLevel: ${level}`);
+    this.setState({level: level})
+  }
+
+  getPaletteColors(level){
+      const {colors} = this.props.palette;
+      let currentColorPalette = colors[level].map(color => (
+          <ColorBox backgroundColor={color.hex} name={color.name} key={uuidv4()} />
+      ));
+      return currentColorPalette;
+  }
+  render() {
+    const {level} = this.state;
+    const colorValues = this.getPaletteColors(level);
 
     return (
       <div className='Palette'>
         {/* palette navbar goes here */}
-        {/* <div className='Palette-header'></div> */}
+        <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevelValue}/>
         <div className='Palette-colors'>
             {/* color boxes go here */}
             {colorValues}
