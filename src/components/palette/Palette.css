@@ -17,22 +17,3 @@
     height: 5vh;
 }
 
-.rc-slider-track{
-    background-color: transparent;
-}
-
-.rc-slider-handle,
-.rc-slider-handle:active,
-.rc-slider-handle:focus,
-.rc-slider-handle:hover{
-    background-color: #0000ff;
-    border: 2px solid #0000ff;
-    outline: none;
-    width: 16px;
-    height: 16px;
-    box-shadow: none;
-}
-
-.rc-slider-rail{
-    height: 8px;
-}
