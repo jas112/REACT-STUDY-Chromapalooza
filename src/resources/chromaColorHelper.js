@@ -34,6 +34,7 @@
 /////////////////////////////////////////////////////////////////
 
 import chroma from 'chroma-js';
+import seedPalettes from './seedPalettes';
 
 const levels = [50, 100, 200, 300,400, 500, 600, 700, 800, 900];
 
@@ -73,7 +74,7 @@ function getRange(colorHexValue){
         end
     ];
 
-    console.log(`range: ${range}`);
+    // console.log(`range: ${range}`);
 
     return range;
 }
@@ -81,9 +82,34 @@ function getRange(colorHexValue){
 function generateScale(colorHexValue, numOfColors){
     let newScale = chroma.scale(getRange(colorHexValue)).mode('lab').colors(numOfColors);
 
-    console.log(`newScale: ${newScale}`);
+    // console.log(`newScale: ${newScale}`);
 
     return newScale;
 }
 
-export { generateColorPalette };
+function retreivePalette(id){
+
+    console.log(`id: ${id}`);
+
+    let targetPalette = seedPalettes.find(function(palette){
+        return palette.id === id
+    });
+
+    // console.log(`${JSON.stringify(targetPalette)}`);
+
+    return targetPalette;
+
+}
+
+function generateScaledPaletteById(id){
+
+    let rootPalette = retreivePalette(id);
+    // console.log(`rootPalette: ${JSON.stringify(rootPalette)}`);
+
+    let generatedScaledPalette = generateColorPalette(rootPalette);
+    // console.log(`generatedScaledPalette: ${JSON.stringify(generatedScaledPalette)}`);
+
+    return generatedScaledPalette;
+}
+
+export { generateColorPalette, generateScaledPaletteById };

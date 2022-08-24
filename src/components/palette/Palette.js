@@ -6,12 +6,18 @@ import Footer from '../footer/Footer';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { generateColorPalette, generateScaledPaletteById } from '../../resources/chromaColorHelper';
 import './Palette.css';
 
 class Palette extends Component {
   constructor(props){
     super(props);
-    this.state = { level: 500 , colorFormat: 'hex', open: false};
+    this.state = { 
+      // palette: generateScaledPaletteById(this.props.match.params.id), 
+      level: 500 , 
+      colorFormat: 'hex', 
+      open: false
+    };
     this.changeLevelValue = this.changeLevelValue.bind(this);
     this.changeColorFormat = this.changeColorFormat.bind(this);
     this.closeSnackBar = this.closeSnackBar.bind(this);
@@ -39,7 +45,10 @@ class Palette extends Component {
   }
 
   getPaletteColors(level){
+      // const { colors } = this.state.palette;
+
       const { colors } = this.props.palette;
+
       let currentColorPalette = colors[level].map(color => (
           <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorFormat={this.state.colorFormat} key={uuidv4()} />
       ));
@@ -47,8 +56,22 @@ class Palette extends Component {
   }
   render() {
     const { level, colorFormat, open } = this.state;
+    // const { id } = this.props.match.params;
+    // console.log(`palette id: ${id}`);
+
+    // const thisPalette = this.state.palette;
+
+    const thisPalette = this.props.palette;
+
+    console.log(`thisPalette: ${JSON.stringify(thisPalette)}`);
+
+    // const { paletteName, emoji } = this.state.palette;
+
     const { paletteName, emoji } = this.props.palette;
+
     const colorValues = this.getPaletteColors(level);
+
+
 
     return (
       <div className='Palette'>
@@ -60,7 +83,7 @@ class Palette extends Component {
         </div>
 
         <Footer paletteName={paletteName} paletteEmoji={emoji} />
-        
+
         <Snackbar 
           anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} 
           open={open}
