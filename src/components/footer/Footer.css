@@ -1,0 +1,21 @@
+.Footer{
+    width:100%;
+    height: 5vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #1f1f1f;
+    padding: 0;
+    border-spacing: 0;
+}
+
+.Footer-paletteName{
+    color: #daa520;
+    margin: 0;
+}
+
+.Footer-paletteEmoji{
+    color: #daa520;
+    margin: 0 10px;
+}

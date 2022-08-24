@@ -1,5 +1,10 @@
 .Palette{
+
     height: 100vh;
+    width: 100vw;
+    border-spacing: 0;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .Palette-slider-container{
@@ -11,9 +16,8 @@
 
 .Palette-colors{
     height: 90vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
-.Palette-footer{
-    height: 5vh;
-}
 

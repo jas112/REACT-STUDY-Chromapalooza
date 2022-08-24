@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ColorBox from '../colorBox/ColorBox';
 import NavBar from '../navBar/NavBar';
+import Footer from '../footer/Footer';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -38,36 +39,33 @@ class Palette extends Component {
   }
 
   getPaletteColors(level){
-      const {colors} = this.props.palette;
+      const { colors } = this.props.palette;
       let currentColorPalette = colors[level].map(color => (
           <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorFormat={this.state.colorFormat} key={uuidv4()} />
       ));
       return currentColorPalette;
   }
   render() {
-    const {level} = this.state;
+    const { level, colorFormat, open } = this.state;
+    const { paletteName, emoji } = this.props.palette;
     const colorValues = this.getPaletteColors(level);
 
     return (
       <div className='Palette'>
 
-        {/* <div className='Palette-slider-container'>
-          <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevelValue}/>
-        </div> */}
-
-        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={this.state.colorFormat} level={level} />
+        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} />
         
         <div className='Palette-colors'>
             {colorValues}
         </div>
 
-        {/* palette footer goes here */}
-        {/* <div className='Palette-footer'></div> */}
+        <Footer paletteName={paletteName} paletteEmoji={emoji} />
+        
         <Snackbar 
           anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} 
-          open={this.state.open}
+          open={open}
           autoHideDuration={3000}
-          message={<span id='message-id'>Format Changed To:  <span style={{textTransform: 'uppercase'}}>{this.state.colorFormat}</span></span>}
+          message={<span id='message-id'>Format Changed To:  <span style={{textTransform: 'uppercase'}}>{colorFormat}</span></span>}
           ContentProps={{
             'aria-describedby': 'message-id'
           }}
