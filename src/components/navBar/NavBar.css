@@ -76,3 +76,36 @@
     border: 1px solid #daa520;
     height: 8px;
 }
+
+.NavBar-select{
+    /* border:1px solid white; */
+    padding: 0 10px;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    flex-grow: 1;
+
+}
+
+.MuiInputBase-root{
+    color:#ffffff;
+    /* background-color: #ffa500; */
+    width:250px !important;
+    /* border-radius: 3px !important; */
+}
+
+.MuiInputBase-root,
+.MuiList-root{
+    background-color: #2f2f2f !important;
+    border: none !important;;
+}
+
+.MuiInputBase-root,
+.MuiSelect-icon{
+    padding-left: 10px !important;
+    color:#ffa500 !important;
+}
+
+.MuiMenuItem-root{
+    color:#ffa500 !important;
+}

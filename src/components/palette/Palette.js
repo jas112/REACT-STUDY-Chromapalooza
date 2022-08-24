@@ -7,13 +7,18 @@ import './Palette.css';
 class Palette extends Component {
   constructor(props){
     super(props);
-    this.state = { level: 500};
+    this.state = { level: 500 , colorFormat: 'hex'};
     this.changeLevelValue = this.changeLevelValue.bind(this);
+    this.changeColorFormat= this.changeColorFormat.bind(this);
   }
 
   changeLevelValue(level){
     console.log(`newLevel: ${level}`);
     this.setState({level: level})
+  }
+
+  changeColorFormat(evt){
+    console.log(`new color format: ${evt.target.value}`);
   }
 
   getPaletteColors(level){
@@ -34,7 +39,7 @@ class Palette extends Component {
           <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevelValue}/>
         </div> */}
 
-        <NavBar changeLevelValue={this.changeLevelValue} level={level} />
+        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} level={level} />
         
         <div className='Palette-colors'>
             {colorValues}
