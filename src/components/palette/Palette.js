@@ -19,12 +19,14 @@ class Palette extends Component {
 
   changeColorFormat(evt){
     console.log(`new color format: ${evt.target.value}`);
+    let newColorFormat = evt.target.value;
+    this.setState({colorFormat: newColorFormat});
   }
 
   getPaletteColors(level){
       const {colors} = this.props.palette;
       let currentColorPalette = colors[level].map(color => (
-          <ColorBox backgroundColor={color.hex} name={color.name} key={uuidv4()} />
+          <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorFormat={this.state.colorFormat} key={uuidv4()} />
       ));
       return currentColorPalette;
   }
@@ -39,7 +41,7 @@ class Palette extends Component {
           <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevelValue}/>
         </div> */}
 
-        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} level={level} />
+        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={this.state.colorFormat} level={level} />
         
         <div className='Palette-colors'>
             {colorValues}

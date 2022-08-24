@@ -8,7 +8,7 @@ import './NavBar.css';
 class NavBar extends Component {
   render() {
 
-    const { changeLevelValue, level } = this.props;
+    const { changeLevelValue, changeColorFormat, currentColorFormat, level } = this.props;
 
     return (
       <header className='NavBar'>
@@ -24,7 +24,7 @@ class NavBar extends Component {
             </div>
         </div>
         <div className='NavBar-select'>
-            <Select onChange={this.props.changeColorFormat}>
+            <Select onChange={changeColorFormat} defaultValue={currentColorFormat}>
                 <MenuItem value='hex'>HEX - #ffffff</MenuItem>
                 <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
                 <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
