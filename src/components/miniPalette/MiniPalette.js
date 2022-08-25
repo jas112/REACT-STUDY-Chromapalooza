@@ -85,7 +85,11 @@ const styles = {
     },
 
     miniPaletteColorDisplay: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        width: '98.4%',
+        height: '170px',
+        borderRadius: '5px',
+        overflow: 'hidden'
     },
 
     miniPaletteDetails: {
@@ -104,18 +108,47 @@ const styles = {
             fontSize: '10px'
         }
     },
+
     miniPaletteEmoji: {
         fontSize:'1.2rem'
+    },
+
+    miniPaletteColorElement: {
+        width:'20%',
+        height: '25%',
+        display: 'inline-block',
+        margin: '0 auto',
+        marginBottom: '-3.5px',
+        '&:before': {
+            content: '""',
+            position: 'absolute',
+            height: '3.25%',
+            width: '3.70%',
+            background: 'linear-gradient(180deg, transparent, #ffffff50,  #ffffff95)',
+            zIndex: '-1',
+            filter: 'blur(1px)',
+        }
     }
 }
 
 function MiniPalette(props){
     const {paletteName, id, emoji, colors, classes} = props;
+
+    const miniPaletteColors = colors.map(color => (
+        <div 
+        className={classes.miniPaletteColorElement} 
+        style={{backgroundColor: `${color.color}90`,}} 
+        key={color.name}>
+        </div>
+    ));
+
     return (
         <Link className='MiniPaletteLink' to={`/palette/${id}`}>
             <div className={classes.miniPaletteDisplayFrame}>
                 <div className={classes.miniPalette}>
-                    <div className={classes.miniPaletteColorDisplay}></div>
+                    <div className={classes.miniPaletteColorDisplay}>
+                        {miniPaletteColors}
+                    </div>
                     <div className={classes.miniPaletteDetails}>
                         <div className={classes.miniPaletteName}>{paletteName}</div>
                         <div className={classes.miniPaletteEmoji}>{emoji}</div>
