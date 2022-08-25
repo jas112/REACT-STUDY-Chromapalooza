@@ -6,6 +6,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1f1f1f;
+  /* background-image: url('./assets/imgs/david-trinks-bg.jpg');*//* background image by David Trinks on unspash. */
+  /* background-image: url('./assets/imgs/gradienta-bg-1.jpg');*//* background image by Gradienta on unspash. */
+  /*background-image: url('./assets/imgs/gradienta-bg-2.jpg');*//* background image by Gradienta on unspash. */
+  /*background-image: url('./assets/imgs/marek-piwnicki-bg-1.jpg');*//* background image by Marek Piwnikcki on unspash. */
+  background-image: url('./assets/imgs/marek-piwnicki-bg-2.jpg');/* background image by Marek Piwnikcki on unspash. */
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: auto 150vh;
 }
 
 code {

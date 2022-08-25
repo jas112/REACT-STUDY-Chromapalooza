@@ -23,41 +23,102 @@ import './MiniPalette.css';
 // export default MiniPalette;
 
 const styles = {
-    miniPalette: {
+
+    miniPaletteDisplayFrame: {
         width: '200px',
         height: '200px',
         display: 'flex',
         flexFlow: 'column nowrap',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'transparent',
+        margin: '0',
+        padding:"0",
+    }, 
+
+    miniPalette: {
+        width: '195px',
+        height: '195px',
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        justifyContent: 'center',
+        alignItems: 'center',
         color: '#daa520',
-        backgroundColor: '#323232',
+        backgroundColor: '#32323290',
         margin: '10px 0',
-        borderRadius: '3px',
+        borderRadius: '5px',
         boxShadow: '0px 0px 15px #00000080',
+        padding:".5rem",
+        overflow: 'hidden',
+        '&:hover': {
+            width: '200px',
+            height: '200px',
+            cursor:'pointer',
+            backgroundColor: '#3b3b3b65',
+            boxShadow: '0px 0px 20px #00000080',
+            '&:before': {
+                content: '""',
+                position: 'absolute',
+                height: '180px',
+                width: '200px',
+                background: 'linear-gradient(90deg, crimson, blue, green)',
+                zIndex: '-1',
+                filter: 'blur(15px)',
+            }
+        },
+        '&:before': {
+            content: '""',
+            position: 'absolute',
+            height: '170px',
+            width: '195px',
+            background: 'linear-gradient(90deg, crimson, blue, green)',
+            zIndex: '-1',
+            filter: 'blur(15px)',
+        }
     },
     
     miniPaletteLink: {
+        textDecoration: 'none',
+        
+    },
+
+    miniPaletteColorDisplay: {
         textDecoration: 'none'
     },
 
+    miniPaletteDetails: {
+        width: '100%',
+        textDecoration: 'none',
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
     miniPaletteName: {
+        fontSize: '.85rem',
         '& h4': {
             color: 'red',
             fontSize: '10px'
         }
+    },
+    miniPaletteEmoji: {
+        fontSize:'1.2rem'
     }
 }
 
 function MiniPalette(props){
-    const {palette, classes} = props;
+    const {paletteName, id, emoji, colors, classes} = props;
     return (
-        <Link className='MiniPaletteLink' to={`/palette/${palette.id}`}>
-            <div className={classes.miniPalette}>
-                <div className='MiniPaletteColors'></div>
-                <div className={classes.miniPaletteName}>
-                    {palette.paletteName}
-                    <h4>test of nested styles...</h4>
+        <Link className='MiniPaletteLink' to={`/palette/${id}`}>
+            <div className={classes.miniPaletteDisplayFrame}>
+                <div className={classes.miniPalette}>
+                    <div className={classes.miniPaletteColorDisplay}></div>
+                    <div className={classes.miniPaletteDetails}>
+                        <div className={classes.miniPaletteName}>{paletteName}</div>
+                        <div className={classes.miniPaletteEmoji}>{emoji}</div>
+                        {/* <h4>test of nested styles...</h4> */}
+                    </div>
                 </div>
             </div>
         </Link>
