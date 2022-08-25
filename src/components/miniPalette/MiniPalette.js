@@ -25,7 +25,8 @@ import './MiniPalette.css';
 const styles = {
 
     miniPaletteDisplayFrame: {
-        width: '200px',
+        // border: '1px solid white',
+        width: '100%',
         height: '200px',
         display: 'flex',
         flexFlow: 'column nowrap',
@@ -37,8 +38,8 @@ const styles = {
     }, 
 
     miniPalette: {
-        width: '195px',
-        height: '195px',
+        width: '97.5%',
+        height: '97.5%',
         display: 'flex',
         flexFlow: 'column nowrap',
         justifyContent: 'center',
@@ -47,20 +48,21 @@ const styles = {
         backgroundColor: '#32323290',
         margin: '10px 0',
         borderRadius: '5px',
-        boxShadow: '0px 0px 15px #00000080',
+        boxShadow: '0px 0px 15px #ff510080',
+        border: '1px solid #ff5100',
         padding:".5rem",
         overflow: 'hidden',
         '&:hover': {
-            width: '200px',
-            height: '200px',
+            width: '100%',
+            height: '100%',
             cursor:'pointer',
             backgroundColor: '#3b3b3b65',
             boxShadow: '0px 0px 20px #00000080',
             '&:before': {
                 content: '""',
                 position: 'absolute',
-                height: '180px',
-                width: '200px',
+                height: '21.5%',
+                width: '21%',
                 background: 'linear-gradient(90deg, crimson, blue, green)',
                 zIndex: '-1',
                 filter: 'blur(15px)',
@@ -69,8 +71,8 @@ const styles = {
         '&:before': {
             content: '""',
             position: 'absolute',
-            height: '170px',
-            width: '195px',
+            height: '17%',
+            width: '17%',
             background: 'linear-gradient(90deg, crimson, blue, green)',
             zIndex: '-1',
             filter: 'blur(15px)',

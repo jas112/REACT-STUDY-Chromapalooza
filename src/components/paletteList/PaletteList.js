@@ -15,7 +15,6 @@ const styles = {
     },
     
     paletteListConsole: {
-        /* border: 1px solid greenyellow; */
         width: '50%',
         maxWidth: '100%',
         display: 'flex',
@@ -25,7 +24,6 @@ const styles = {
     },
     
     paletteListHeader: {
-        /* border: 1px solid white; */
         width: '100%',
         display: 'flex',
         flexFlow: 'row nowrap',
@@ -66,15 +64,22 @@ const styles = {
     },
     
     paletteListDisplay: {
-        /* border: 1px solid #ffa500; */
+        
+        // width: '100%',
+        // display: 'flex',
+        // flexFlow: 'row wrap',
+        // justifyContent: 'space-between',
+        // alignItems: 'center',
+        // flexGrow: '1',
+        // padding: '20px 0 0 0',
+        // margin: '10px 0 0 0',
+
+        boxSizing: 'border-box',
         width: '100%',
-        display: 'flex',
-        flexFlow: 'row wrap',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexGrow: '1',
-        padding: '20px 0 0 0',
-        margin: '10px 0 0 0',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 30%)',
+        gridGap: '5%'
+
     }
 }
 
