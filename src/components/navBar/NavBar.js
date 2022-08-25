@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from 'rc-slider';
@@ -13,9 +14,9 @@ class NavBar extends Component {
     return (
       <header className='NavBar'>
         <div className='NavBar-branding-box'>
-            <div className='NavBar-branding'>
+            <NavLink className='NavBar-branding' to='/'>
                 chromapalooza
-            </div>
+            </NavLink>
         </div>
         <div className='NavBar-slider-console'>
             <div className='NavBar-slider-readout'>Level: {level}</div>

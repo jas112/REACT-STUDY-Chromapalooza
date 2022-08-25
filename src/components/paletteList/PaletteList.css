@@ -1,0 +1,77 @@
+.PaletteList{
+    width:100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.PaletteList-console{
+    /* border: 1px solid greenyellow; */
+    width: 900px;
+    max-width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.PaletteList-header{
+    /* border: 1px solid white; */
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #ffa500;
+    margin: ;
+}
+
+.PaletteList-mainTitle-box{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 30px;
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+}
+
+.PaletteList-mainTitle{
+    background: linear-gradient(to right,
+    #ff0000, 
+    #ffa500, 
+    #ffff00, 
+    #008000,
+    #5c5cf3, 
+    #8047aa, 
+    #ee82ee,
+    #30CFD0);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+.PaletteList-header-console-box{
+
+}
+
+.PaletteList-header-operation{
+
+}
+
+.PaletteList-display{
+    border: 1px solid #ffa500;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+
