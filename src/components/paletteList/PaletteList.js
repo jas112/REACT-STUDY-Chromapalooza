@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import MiniPalette from '../miniPalette/MiniPalette';
 import './PaletteList.css';
 
 class PaletteList extends Component {
@@ -7,7 +8,9 @@ class PaletteList extends Component {
         let rootPalettes = this.props.palettes; 
 
         let currentPalettes = rootPalettes.map(palette => (
-            <NavLink style={{color: 'goldenrod'}} to={`/palette/${palette.id}`}>{palette.paletteName}</NavLink>
+
+            <MiniPalette palette={palette} key={palette.id} />
+            // <NavLink style={{color: 'goldenrod'}} to={`/palette/${palette.id}`}>{palette.paletteName}</NavLink>
         ));
 
         return currentPalettes;
@@ -31,7 +34,7 @@ class PaletteList extends Component {
                     </div>
                 </div>
                 <div className='PaletteList-display'>
-                    {palettes} 23232
+                    {palettes}
                 </div>
             </div>
 

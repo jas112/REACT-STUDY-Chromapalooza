@@ -1,0 +1,17 @@
+.MiniPalette{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #daa520;
+    background-color: #323232;
+    margin: 10px 0;
+    border-radius: 3px;
+    box-shadow: 0px 0px 15px #00000080;
+}
+
+.MiniPalette-link{
+    text-decoration: none;
+}

@@ -21,9 +21,9 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     color: #ffa500;
-    margin: ;
+    margin: 30px 0 0 0;
 }
 
 .PaletteList-mainTitle-box{
@@ -65,13 +65,15 @@
 }
 
 .PaletteList-display{
-    border: 1px solid #ffa500;
+    /* border: 1px solid #ffa500; */
     width: 100%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-grow: 1;
+    padding: 20px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 
