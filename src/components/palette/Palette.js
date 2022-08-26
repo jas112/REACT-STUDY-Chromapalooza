@@ -50,7 +50,7 @@ class Palette extends Component {
       const { colors } = this.props.palette;
 
       let currentColorPalette = colors[level].map(color => (
-          <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorFormat={this.state.colorFormat} key={uuidv4()} />
+          <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorId={color.id} paletteId={this.props.palette.id} colorFormat={this.state.colorFormat} key={uuidv4()} />
       ));
       return currentColorPalette;
   }

@@ -65,6 +65,35 @@ function generateColorPalette(starterPalette){
     return newColorPalette;
 }
 
+function generateSingleColorPalette(paletteId, colorId){
+
+    let palette = generateScaledPaletteById(paletteId);
+
+    let colorIdCheck = colorId;
+    console.log(`colorIdCheck = ${colorIdCheck}`);
+
+    let singleColorPalette = {
+        paletteName: palette.paletteName,
+        id: palette.id,
+        emoji: palette.emoji,
+        colors: []
+    };
+
+    for (const level of levels) {
+        let colorArr = palette.colors[level];
+        colorArr.forEach(color => {
+            if (colorIdCheck === color.id) {
+                if (level > 50) {
+                    singleColorPalette.colors.push(color);
+                }
+            } 
+        });
+
+    }
+
+    return singleColorPalette;
+}
+
 function getRange(colorHexValue){
     const end = '#ffffff';
 
@@ -112,4 +141,4 @@ function generateScaledPaletteById(id){
     return generatedScaledPalette;
 }
 
-export { generateColorPalette, generateScaledPaletteById };
+export { generateColorPalette, generateScaledPaletteById, generateSingleColorPalette};
