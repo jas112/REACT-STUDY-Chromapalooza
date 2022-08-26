@@ -19,9 +19,20 @@ class ColorBox extends Component {
             }, 1500);
         });
     }
+
+    generateShowMoreLink(){
+        return (
+            <Link to={this.props.colorUrl} onClick={e => e.stopPropagation()}>
+                <span className='see-more'>More</span>
+            </Link>
+        );
+    }
+
   render() {
     
-    const {backgroundColor, name, colorId, paletteId} = this.props;
+    const {backgroundColor, name , showMore} = this.props;
+
+    let showMoreLink = this.generateShowMoreLink();
 
     return (
         <CopyToClipboard text={backgroundColor} onCopy={this.triggerCopyIndicator}>
@@ -37,9 +48,7 @@ class ColorBox extends Component {
                     </div>
                     <button className='copy-element-btn'>Copy</button>
                 </div>
-                <Link to={`/palette/${paletteId}/${colorId}`} onClick={e => e.stopPropagation()}>
-                    <span className='see-more'>More</span>
-                </Link>
+                {showMore ? showMoreLink : null}
             </div>
         </CopyToClipboard>
     )

@@ -94,6 +94,23 @@ function generateSingleColorPalette(paletteId, colorId){
     return singleColorPalette;
 }
 
+function getColorShadesFromPalette(palette, colorId){
+
+    let colorShades = [];
+    let fullPaletteColors = palette.colors;
+
+    for (let key in fullPaletteColors) {
+        colorShades = colorShades.concat(
+            fullPaletteColors[key].filter(color => color.id === colorId)
+        );
+    }
+
+    palette.colors = colorShades
+    console.log(`colorShades-palette: ${JSON.stringify(palette)}`);
+
+    return palette;
+}
+
 function getRange(colorHexValue){
     const end = '#ffffff';
 

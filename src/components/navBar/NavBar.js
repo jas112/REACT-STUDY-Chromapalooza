@@ -7,10 +7,30 @@ import 'rc-slider/assets/index.css';
 import './NavBar.css';
 
 class NavBar extends Component {
+
+  generateNavBarSlider(){
+    return (
+      <div className='NavBar-slider-console'>
+          <div className='NavBar-slider-readout'>Level: {this.props.level}</div>
+          <div className='NavBar-slider-box'>
+              <Slider defaultValue={this.props.level} min={100} max={900} step={100} onAfterChange={this.props.changeLevelValue}/>
+          </div>
+      </div>
+    );
+  }
+
   render() {
 
-    const { changeLevelValue, changeColorFormat, currentColorFormat, level } = this.props;
+    const{ changeColorFormat, currentColorFormat, isFullPalette } = this.props;
+    let navBarSlider;
 
+    if(isFullPalette){
+      const { changeLevelValue, level } = this.props;
+      navBarSlider = this.generateNavBarSlider();
+    }else{
+      navBarSlider = null;
+    }
+    
     return (
       <header className='NavBar'>
         <div className='NavBar-branding-box'>
@@ -18,12 +38,7 @@ class NavBar extends Component {
                 chromapalooza
             </NavLink>
         </div>
-        <div className='NavBar-slider-console'>
-            <div className='NavBar-slider-readout'>Level: {level}</div>
-            <div className='NavBar-slider-box'>
-                <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={changeLevelValue}/>
-            </div>
-        </div>
+        {navBarSlider}
         <div className='NavBar-select'>
             <Select onChange={changeColorFormat} defaultValue={currentColorFormat}>
                 <MenuItem value='hex'>HEX - #ffffff</MenuItem>

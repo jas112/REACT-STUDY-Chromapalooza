@@ -50,7 +50,7 @@ class Palette extends Component {
       const { colors } = this.props.palette;
 
       let currentColorPalette = colors[level].map(color => (
-          <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorId={color.id} paletteId={this.props.palette.id} colorFormat={this.state.colorFormat} key={uuidv4()} />
+          <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorUrl={`/palette/${this.props.palette.id}/${color.id}`} colorFormat={this.state.colorFormat} palette={this.props.palette} showMore={true} key={uuidv4()} />
       ));
       return currentColorPalette;
   }
@@ -76,7 +76,7 @@ class Palette extends Component {
     return (
       <div className='Palette'>
 
-        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} />
+        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} isFullPalette={true} />
         
         <div className='Palette-colors'>
             {colorValues}

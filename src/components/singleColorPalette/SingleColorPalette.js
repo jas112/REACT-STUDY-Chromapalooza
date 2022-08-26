@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import ColorBox from '../colorBox/ColorBox';
 import NavBar from '../navBar/NavBar';
@@ -12,18 +13,11 @@ class SingleColorPalette extends Component {
     constructor(props){
         super(props);
         this.state = { 
-          level: 500 , 
           colorFormat: 'hex', 
           open: false
         };
-        this.changeLevelValue = this.changeLevelValue.bind(this);
         this.changeColorFormat = this.changeColorFormat.bind(this);
         this.closeSnackBar = this.closeSnackBar.bind(this);
-      }
-    
-      changeLevelValue(level){
-        console.log(`newLevel: ${level}`);
-        this.setState({level: level});
       }
     
       changeColorFormat(evt){
@@ -47,14 +41,24 @@ class SingleColorPalette extends Component {
           const { colors } = this.props.palette;
     
           let currentColorPalette = colors.map(color => (
-              <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorFormat={this.state.colorFormat} key={uuidv4()} />
+              <ColorBox backgroundColor={color[`${this.state.colorFormat}`]} name={color.name} colorFormat={this.state.colorFormat} showMore={false} key={uuidv4()} />
           ));
           return currentColorPalette;
       }
 
+      generateGoBackColorBox(){
+        return (
+          <div className='ColorBox SingleColorPaletteGoBack' key={uuidv4()}>
+            <div className='goBackBtnFrame'>
+              <Link to={`/palette/${this.props.palette.id}`} className='goBackBtn'>GO BACK</Link>
+            </div>
+          </div>
+        );
+      }
+
   render() {
 
-    const { level, colorFormat, open } = this.state;
+    const { colorFormat, open } = this.state;
 
     const thisPalette = this.props.palette;
 
@@ -62,15 +66,18 @@ class SingleColorPalette extends Component {
 
     const { paletteName, emoji } = this.props.palette;
 
-    const colorValues = this.getPaletteColors(level);
+    const colorValues = this.getPaletteColors();
+
+    let goBackColorBox = this.generateGoBackColorBox();
 
     return (
         <div className='SingleColorPalette'>
 
-        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} />
+        <NavBar changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} isFullPalette={false} />
         
         <div className='SingleColorPalette-colors'>
             {colorValues}
+            {goBackColorBox}
         </div>
 
         <Footer paletteName={paletteName} paletteEmoji={emoji} />
