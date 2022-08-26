@@ -40,10 +40,14 @@
     left: 0px;
     bottom: 0px;
     padding: 10px;
-    font-size: 12px;
+    font-size: 10spx;
     color:#000000;
     letter-spacing: 1px;
     text-transform: uppercase;    
+}
+
+.isDarkBG{
+    color:#ffffff;
 }
 
 .see-more{
@@ -55,9 +59,14 @@
     bottom: 0px;
     border: none;
     color: #ffffff;
+    font-weight: 500;
     text-align: center;
     line-height: 30px;
     text-transform: uppercase;
+}
+
+.isLightBG{
+    color:#00000080;
 }
 
 .copy-indicator-overlay{

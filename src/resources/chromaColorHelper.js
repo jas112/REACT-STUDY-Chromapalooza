@@ -70,7 +70,7 @@ function generateSingleColorPalette(paletteId, colorId){
     let palette = generateScaledPaletteById(paletteId);
 
     let colorIdCheck = colorId;
-    console.log(`colorIdCheck = ${colorIdCheck}`);
+    // console.log(`colorIdCheck = ${colorIdCheck}`);
 
     let singleColorPalette = {
         paletteName: palette.paletteName,
@@ -106,7 +106,7 @@ function getColorShadesFromPalette(palette, colorId){
     }
 
     palette.colors = colorShades
-    console.log(`colorShades-palette: ${JSON.stringify(palette)}`);
+    // console.log(`colorShades-palette: ${JSON.stringify(palette)}`);
 
     return palette;
 }
@@ -135,7 +135,7 @@ function generateScale(colorHexValue, numOfColors){
 
 function retreivePalette(id){
 
-    console.log(`id: ${id}`);
+    // console.log(`id: ${id}`);
 
     let targetPalette = seedPalettes.find(function(palette){
         return palette.id === id

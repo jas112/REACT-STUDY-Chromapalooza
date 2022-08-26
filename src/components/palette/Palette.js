@@ -63,7 +63,7 @@ class Palette extends Component {
 
     const thisPalette = this.props.palette;
 
-    console.log(`thisPalette: ${JSON.stringify(thisPalette)}`);
+    // console.log(`thisPalette: ${JSON.stringify(thisPalette)}`);
 
     // const { paletteName, emoji } = this.state.palette;
 

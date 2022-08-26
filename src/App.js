@@ -11,14 +11,14 @@ class App extends Component {
 
   render(){
 
-    let testPalette = generateScaledPaletteById('material-ui-colors');
-    console.log(`testPalette: ${JSON.stringify(testPalette)}`);
+    // let testPalette = generateScaledPaletteById('material-ui-colors');
+    // console.log(`testPalette: ${JSON.stringify(testPalette)}`);
 
     // let testPalette2 = generateSingleColorPalette(testPalette, `green`);
     // console.log(`testPalette2: ${JSON.stringify(testPalette2)}`);
 
-    let testPalette2 = generateSingleColorPalette('material-ui-colors', `green`);
-    console.log(`testPalette2: ${JSON.stringify(testPalette2)}`);
+    // let testPalette2 = generateSingleColorPalette('material-ui-colors', `green`);
+    // console.log(`testPalette2: ${JSON.stringify(testPalette2)}`);
 
     // console.log(generateColorPalette(seedPalettes[4]))
 
