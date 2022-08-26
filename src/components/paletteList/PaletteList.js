@@ -89,11 +89,15 @@ class PaletteList extends Component {
 
         let currentPalettes = rootPalettes.map(palette => (
 
-            <MiniPalette {...palette} key={palette.id} />
+            <MiniPalette {...palette} key={palette.id} handleClick={() => this.navigateToPaletteById(palette.id)} />
             // <NavLink style={{color: 'goldenrod'}} to={`/palette/${palette.id}`}>{palette.paletteName}</NavLink>
         ));
 
         return currentPalettes;
+    }
+
+    navigateToPaletteById(id){
+        this.props.history.push(`/palette/${id}`);
     }
   render() {
     const {classes} = this.props;

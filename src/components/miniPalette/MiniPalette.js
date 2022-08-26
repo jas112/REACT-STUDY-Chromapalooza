@@ -89,7 +89,8 @@ const styles = {
         width: '98.4%',
         height: '170px',
         borderRadius: '5px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor: 'transparent'
     },
 
     miniPaletteDetails: {
@@ -119,7 +120,8 @@ const styles = {
         display: 'inline-block',
         margin: '0 auto',
         marginBottom: '-3.5px',
-        '&:before': {
+        overflow: 'hidden',
+        '&::before': {
             content: '""',
             position: 'absolute',
             height: '3.25%',
@@ -143,9 +145,9 @@ function MiniPalette(props){
     ));
 
     return (
-        <Link className='MiniPaletteLink' to={`/palette/${id}`}>
+        // <Link className='MiniPaletteLink' to={`/palette/${id}`}>
             <div className={classes.miniPaletteDisplayFrame}>
-                <div className={classes.miniPalette}>
+                <div className={classes.miniPalette} onClick={props.handleClick}>
                     <div className={classes.miniPaletteColorDisplay}>
                         {miniPaletteColors}
                     </div>
@@ -156,7 +158,7 @@ function MiniPalette(props){
                     </div>
                 </div>
             </div>
-        </Link>
+        // </Link>
     );
 }
 
