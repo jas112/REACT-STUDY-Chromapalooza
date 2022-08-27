@@ -1,4 +1,4 @@
-.NavBar{
+/* .NavBar{
     height: 5vh;
     display: flex;
     flex-flow: row wrap;
@@ -6,7 +6,7 @@
     align-items: center;
     color: #daa520;
     background-color: #1f1f1f;
-}
+} */
 
 .NavBar-branding-box{
     display: flex;
@@ -35,7 +35,7 @@
     text-transform: uppercase;
 }
 
-.NavBar-slider-console{
+/* .NavBar-slider-console{
     display: inline-block;
 }
 
@@ -48,7 +48,7 @@
     min-width: 200px;
     margin:0 15px;
     display: inline-block;
-}
+} */
 
 
 .rc-slider-track{
@@ -77,15 +77,13 @@
     height: 8px;
 }
 
-.NavBar-select{
-    /* border:1px solid white; */
+/* .NavBar-select{
     padding: 0 10px;
     display:flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
     flex-grow: 1;
-
-}
+} */
 
 .MuiInputBase-root{
     color:#ffffff;
