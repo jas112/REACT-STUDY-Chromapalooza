@@ -13,6 +13,7 @@ body {
   background-image: url('./assets/imgs/marek-piwnicki-bg-2.jpg');/* background image by Marek Piwnikcki on unspash. */
   background-position: top center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 

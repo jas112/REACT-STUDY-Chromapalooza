@@ -79,7 +79,7 @@ class Palette extends Component {
     return (
       <div className={classes.palette}>
 
-        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} isFullPalette={true} />
+        <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} isFullPalette={true} isPaletteNavBar={true} />
         
         <div className={classes.paletteColors}>
             {colorValues}

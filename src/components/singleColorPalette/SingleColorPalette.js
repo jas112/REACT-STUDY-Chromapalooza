@@ -75,7 +75,7 @@ class SingleColorPalette extends Component {
     return (
       <div className={classes.singleColorPalette}>
 
-        <NavBar changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} isFullPalette={false} />
+        <NavBar changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} isFullPalette={false} isPaletteNavBar={true} />
         
         <div className={classes.singleColorPaletteColors}>
             {colorValues}

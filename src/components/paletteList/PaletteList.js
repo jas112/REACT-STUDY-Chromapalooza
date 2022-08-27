@@ -36,7 +36,7 @@ class PaletteList extends Component {
                     </div>
                     <div className={classes.paletteListHeaderConsoleBox}>
                         <div className={classes.paletteListHeaderOperation}>
-                            Create Palette
+                            <NavLink className={classes.paletteListHeaderOperationLink} to='/palette/new'>Create Palette</NavLink>
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,11 @@ export default {
         color: '#ffa500',
         margin: '30px 0 0 0',
     },
+
+    paletteListHeaderOperationLink: {
+        textDecoration: 'none',
+        color: '#ffa500',
+    },
     
     paletteListMainTitleBox: {
         display: 'flex',

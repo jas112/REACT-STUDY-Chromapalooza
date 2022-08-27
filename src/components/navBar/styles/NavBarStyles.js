@@ -1,5 +1,6 @@
 export default {
     navBar: {
+        width: '100%',
         height: '5vh',
         display: 'flex',
         flexFlow: 'row wrap',

@@ -21,16 +21,39 @@ class NavBar extends Component {
     );
   }
 
+  generateNavBarSelect(){
+    return (
+      <div className={this.props.classes.navBarSelect}>
+        <Select onChange={this.props.changeColorFormat} defaultValue={this.props.currentColorFormat}>
+            <MenuItem value='hex'>HEX - #ffffff</MenuItem>
+            <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
+            <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
+        </Select>
+      </div>
+    );
+  }
+
   render() {
 
-    const{ changeColorFormat, currentColorFormat, isFullPalette, classes } = this.props;
+    const{ changeColorFormat, currentColorFormat, isFullPalette, isPaletteNavBar, classes } = this.props;
     let navBarSlider;
+    let navBarSelect;
 
-    if(isFullPalette){
-      const { changeLevelValue, level } = this.props;
-      navBarSlider = this.generateNavBarSlider();
-    }else{
-      navBarSlider = null;
+    if (isPaletteNavBar) {
+
+      navBarSelect = this.generateNavBarSelect();
+
+      if(isFullPalette){
+        const { changeLevelValue, level } = this.props;
+        navBarSlider = this.generateNavBarSlider();
+      }else{
+        navBarSlider = null;
+      }
+
+    } else {
+
+      navBarSelect = null;
+      
     }
     
     return (
@@ -45,14 +68,18 @@ class NavBar extends Component {
               chromapalooza
           </NavLink>
         </div> */}
+
         {navBarSlider}
-        <div className={this.props.classes.navBarSelect}>
+
+        {/* <div className={this.props.classes.navBarSelect}>
             <Select onChange={changeColorFormat} defaultValue={currentColorFormat}>
                 <MenuItem value='hex'>HEX - #ffffff</MenuItem>
                 <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
                 <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
             </Select>
-        </div>
+        </div> */}
+
+        {navBarSelect}
         
       </header>
     )
