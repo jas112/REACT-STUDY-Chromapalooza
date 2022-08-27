@@ -1,47 +1,43 @@
-.SingleColorPalette{
-    
-}
-
-.SingleColorPalette{
+/* .SingleColorPalette{
 
     height: 100vh;
     width: 100vw;
     border-spacing: 0;
     display: flex;
     flex-flow: column nowrap;
-}
+} */
 
-.SingleColorPalette .ColorBox{
+/* .SingleColorPalette .ColorBox{
     height: 50%;
-}
+} */
 
-.SingleColorPalette-slider-container{
+/* .SingleColorPalette-slider-container{
     width:340px;
     margin:0 10px;
     display: inline-block;
     height: 5vh;
-}
+} */
 
-.SingleColorPalette-colors{
+/* .SingleColorPalette-colors{
     height: 90vh;
     width: 100vw;
     overflow: hidden;
-}
+} */
 
-.SingleColorPaletteGoBack{
+/* .SingleColorPaletteGoBack{
     background-color: #00000070;
-}
+} */
 
-.goBackBtnFrame{
+/* .goBackBtnFrame{
     width: 100%;
     height: 100%;
     display: flex;
     flex-flow: colum nowrap;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.goBackBtn{
+/* .goBackBtn{
     text-decoration: none;
     width: 100px;
     height: 30px;
@@ -59,20 +55,20 @@
     margin-top: -15px;
     margin-left: -50px;
     opacity: .3;
-}
+} */
 
-.goBackBtn:visited{
+/* .goBackBtn:visited{
     color: #ffffff;
-}
+} */
 
-.SingleColorPaletteGoBack:hover{
+/* .SingleColorPaletteGoBack:hover{
     box-shadow: 0px 0px 10px #ffffff;
     transition: .5s;
-}
+} */
 
-.SingleColorPaletteGoBack:hover .goBackBtn{
+/* .SingleColorPaletteGoBack:hover .goBackBtn{
     opacity:1;
     box-shadow: 0px 0px 10px #ffffff;
     text-shadow: 0px 0px 10px #ffffff;
     transition: .5s;
-}
+} */

@@ -45,41 +45,22 @@ const styles = {
         padding: '0',
     },
     
-    paletteListMainTitle: {
-        background: 'linear-gradient(to right,#ff0000,#ffa500,#ffff00,#008000,#5c5cf3,#8047aa,#ee82ee,#30CFD0)',
-        backgroundClip: 'text',
-        webkitTextFillColor: 'transparent',
-        fontWeight: '800',
-        textTransform: 'uppercase',
-        margin: '0',
-        padding: '0',
-    },
-    
-    paletteListHeaderConsoleBox: {
-    
-    },
-    
-    paletteListHeaderOperation: {
-    
-    },
+    // paletteListMainTitle: {
+    //     background: 'linear-gradient(to right,#ff0000,#ffa500,#ffff00,#008000,#5c5cf3,#8047aa,#ee82ee,#30CFD0)',
+    //     backgroundClip: 'text',
+    //     webkitTextFillColor: 'transparent',
+    //     fontWeight: '800',
+    //     textTransform: 'uppercase',
+    //     margin: '0',
+    //     padding: '0',
+    // },
     
     paletteListDisplay: {
-        
-        // width: '100%',
-        // display: 'flex',
-        // flexFlow: 'row wrap',
-        // justifyContent: 'space-between',
-        // alignItems: 'center',
-        // flexGrow: '1',
-        // padding: '20px 0 0 0',
-        // margin: '10px 0 0 0',
-
         boxSizing: 'border-box',
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 30%)',
         gridGap: '5%'
-
     }
 }
 
@@ -105,7 +86,7 @@ class PaletteList extends Component {
     console.log(`palettes: ${this.props.palettes}`);
     return (
         <div className={classes.paletteList}>
-            <div className='PaletteList-console'>
+            <div className={classes.paletteListConsole}>
                 <div className={classes.paletteListHeader}>
                     <div className={classes.paletteListMainTitleBox}>
                         <div className='PaletteList-mainTitle'>

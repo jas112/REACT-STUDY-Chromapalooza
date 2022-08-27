@@ -7,7 +7,32 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { generateColorPalette, generateScaledPaletteById } from '../../resources/chromaColorHelper';
+import { withStyles } from '@material-ui/styles';
 import './Palette.css';
+
+const styles = {
+  palette: {
+      height: '100vh',
+      width: '100vw',
+      borderSpacing: '0',
+      display: 'flex',
+      flexFlow: 'column nowrap',
+  },
+
+  paletteSliderContainer: {
+      width:'340px',
+      margin:'0 10px',
+      display: 'inline-block',
+      height: '5vh',
+  },
+
+  paletteColors: {
+      height: '90vh',
+      width: '100vw',
+      backgroundColor: '#000000',
+      overflow: 'hidden',
+  }
+}
 
 class Palette extends Component {
   constructor(props){
@@ -55,6 +80,7 @@ class Palette extends Component {
       return currentColorPalette;
   }
   render() {
+    const { classes } = this.props;
     const { level, colorFormat, open } = this.state;
     // const { id } = this.props.match.params;
     // console.log(`palette id: ${id}`);
@@ -74,11 +100,11 @@ class Palette extends Component {
 
 
     return (
-      <div className='Palette'>
+      <div className={classes.palette}>
 
         <NavBar changeLevelValue={this.changeLevelValue} changeColorFormat={this.changeColorFormat} currentColorFormat={colorFormat} level={level} isFullPalette={true} />
         
-        <div className='Palette-colors'>
+        <div className={classes.paletteColors}>
             {colorValues}
         </div>
 
@@ -104,4 +130,4 @@ class Palette extends Component {
   }
 }
 
-export default Palette
+export default withStyles(styles)(Palette);
