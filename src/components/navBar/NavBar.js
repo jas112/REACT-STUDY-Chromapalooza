@@ -4,7 +4,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import './NavBar.css';
+import './styles/NavBar.css';
 
 class NavBar extends Component {
 

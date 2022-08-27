@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/styles';
 import '../../../node_modules/twemoji-awesome/dist/twemoji-awesome.min.css';
-import './Footer.css';
+import './styles/Footer.css';
+import styles from './styles/FooterStyles';
 
 class Footer extends Component {
   render() {
-    const {paletteName, paletteEmoji} = this.props;
+    const {paletteName, paletteEmoji, classes} = this.props;
     // console.log(`paletteName - ${paletteName} | emoji - ${paletteEmoji}`);
     return (
-      <div className='Footer'>
-        <div className='Footer-paletteName'>
+      <div className={classes.footer}>
+        <div className={classes. footerPaletteName}>
             {paletteName}
         </div>
-        <div className='Footer-paletteEmoji'>
+        <div className={classes. footerPaletteEmoji}>
             {paletteEmoji}	
         </div>
       </div>
@@ -19,4 +21,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default withStyles(styles)(Footer);
