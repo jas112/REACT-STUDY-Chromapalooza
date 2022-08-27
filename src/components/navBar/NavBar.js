@@ -40,6 +40,11 @@ class NavBar extends Component {
                 chromapalooza
             </NavLink>
         </div>
+        {/* <div className={this.props.classes.navBarBrandingBox}>
+          <NavLink className={this.props.classes.navBarBranding} to='/'>
+              chromapalooza
+          </NavLink>
+        </div> */}
         {navBarSlider}
         <div className={this.props.classes.navBarSelect}>
             <Select onChange={changeColorFormat} defaultValue={currentColorFormat}>

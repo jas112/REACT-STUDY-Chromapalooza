@@ -51,11 +51,11 @@
 } */
 
 
-.rc-slider-track{
+/* .rc-slider-track{
     background-color: transparent;
-}
+} */
 
-.rc-slider-handle,
+/* .rc-slider-handle,
 .rc-slider-handle:active,
 .rc-slider-handle:focus,
 .rc-slider-handle:hover{
@@ -69,13 +69,13 @@
     box-shadow: none !important;
     position:relative;
     bottom: 4px;
-}
+} */
 
-.rc-slider-rail{
+/* .rc-slider-rail{
     background-color: transparent;
     border: 1px solid #daa520;
     height: 8px;
-}
+} */
 
 /* .NavBar-select{
     padding: 0 10px;

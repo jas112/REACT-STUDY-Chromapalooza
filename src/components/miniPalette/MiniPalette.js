@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
-import './styles/MiniPalette.css';
+// import './styles/MiniPalette.css';
 import styles from './styles/MiniPaletteStyles';
 
 // class MiniPalette extends Component {
