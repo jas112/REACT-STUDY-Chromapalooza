@@ -28,6 +28,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
+import ColorElement from '../colorElement/ColorElement';
 
 const drawerWidth = 240;
 
@@ -80,8 +81,9 @@ const styles = theme => ({
     justifyContent: 'flex-end',
   },
   content: {
-    height: '100vh',
+    height: 'calc(100vh - 64px) !important',
     backgroundColor: '#0e0e0e !important',
+    borderSpacing: '0 !important',
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
@@ -194,9 +196,12 @@ class PaletteForm extends React.Component {
   }
 
   generatePaletteColors(){
-    let currentPaletteColors = this.state.colors.map(color => (
-      <li key={uuidv4()} style={{backgroundColor: `${color}`, color: '#000000'}}>{color.hex}</li>
-    ));
+    let currentPaletteColors = this.state.colors.map((color) => {
+      let colorIsDark = chroma(color).luminance() <= .6;
+      let textColor = colorIsDark ? '#ffffff' : '#000000';
+      console.log(`colorIsDark: ${colorIsDark} | textColor: ${textColor}`);
+      return(<ColorElement key={uuidv4()} color={color} contentColor ={textColor} style={{fontSize: '14px'}} />);
+    });
     return currentPaletteColors;
   }
 
@@ -289,9 +294,8 @@ class PaletteForm extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          <ul>
+
             {currentPalette}
-          </ul>
           
 
         </main>
