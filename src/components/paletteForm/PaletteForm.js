@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -26,6 +27,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker} from 'react-color';
+import chroma from 'chroma-js';
 
 const drawerWidth = 240;
 
@@ -148,8 +150,13 @@ const styles = theme => ({
   colorPickerConsoleBtn: {
     width: '225px',
     maxWidth: '100%',
+    height: '60px',
     borderRadius: '0',
     margin: '15px auto',
+    fontSize: '1.5rem',
+    '& svg':{
+      color: '#000000', 
+    }
   }
 
 });
@@ -159,10 +166,13 @@ class PaletteForm extends React.Component {
     super(props);
     this.state = {
       open: false,
-      color: '',
+      currentColor: 'lime',
+      colors: ['#ffffff']
     }
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
+    this.updateColorState = this.updateColorState.bind(this);
+    this.addColor = this.addColor.bind(this);
   }
 
   handleDrawerOpen() {
@@ -173,10 +183,32 @@ class PaletteForm extends React.Component {
     this.setState({ open: false });
   }
 
+  updateColorState(colorValue){
+    console.log(colorValue);
+    this.setState({currentColor: colorValue.hex});
+  }
+
+  addColor(){
+    this.setState({colors: [...this.state.colors, this.state.currentColor]},
+      () => console.log(JSON.stringify(this.state.colors)));
+  }
+
+  generatePaletteColors(){
+    let currentPaletteColors = this.state.colors.map(color => (
+      <li key={uuidv4()} style={{backgroundColor: `${color}`, color: '#000000'}}>{color.hex}</li>
+    ));
+    return currentPaletteColors;
+  }
+
   render() {
     const { classes, theme } = this.props;
-    const { open } = this.state;
+    const { open, currentColor } = this.state;
 
+    let isDarkColor = chroma(currentColor).luminance() <= .55;
+    console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
+    let addBtnColor = isDarkColor ? '#ffffff' : '#000000';
+    let currentPalette = this.generatePaletteColors();
+    
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -224,17 +256,26 @@ class PaletteForm extends React.Component {
 
             <div className={classes.colorPickerConsole}>
 
-              <Typography varient='h4'>Create Palette</Typography>
+              <Typography varient='h4'>PALETTE DESIGN CONSOLE</Typography>
 
               <div className={classes.colorPickerSubConsole}>
                 <Button variant="contained" size="large" color="secondary" className={classes.margin}>CLEAR PALETTE</Button>
                 <Button variant="contained" size="large" color="primary" className={classes.margin}>RANDOM COLOR</Button>
               </div>
 
-              <ChromePicker color='darkblue' onChangeComplete={(newColor) => console.log(`${JSON.stringify(newColor)}`)} />
+              <ChromePicker color={this.state.currentColor} onChangeComplete={(newColor) => this.updateColorState(newColor)} />
 
-              <Button variant="contained" size="large" color="primary" className={`${classes.margin} ${classes.colorPickerConsoleBtn}`}>
-                <AddIcon />
+              <Button 
+                variant="contained" 
+                size="large" 
+                color='primary' 
+                className={`${classes.margin} ${classes.colorPickerConsoleBtn}`}
+                style={{
+                  backgroundColor: this.state.currentColor,
+                  color: addBtnColor,
+                }}
+                onClick={this.addColor}
+              >
                 ADD COLOR
               </Button>
 
@@ -248,6 +289,10 @@ class PaletteForm extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
+          <ul>
+            {currentPalette}
+          </ul>
+          
 
         </main>
       </div>
