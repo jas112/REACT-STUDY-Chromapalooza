@@ -29,6 +29,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import ColorElement from '../colorElement/ColorElement';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const drawerWidth = 240;
 
@@ -126,10 +127,25 @@ const styles = theme => ({
     '& .colorPickerConsoleBtn': {
       width: '225px',
       maxWidth: '100%',
+      margin: '0 auto',
     },
     '& .chrome-picker': {
       background: '#00000060 !important',
-    }
+    },
+    '& form': {
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      '& .MuiInputBase-root': {
+        width: '225px !important',
+        maxWidth: '100%',
+        margin: '0 auto',
+        borderRadius: '0',
+        backgroundColor: '#070707 !important',
+      }
+    },
+
 
   },
 
@@ -146,6 +162,7 @@ const styles = theme => ({
       maxWidth: '100%',
       borderRadius: '0',
       fontSize: '.5rem',
+      margin: '0 auto',
     }
   },
 
@@ -154,7 +171,7 @@ const styles = theme => ({
     maxWidth: '100%',
     height: '60px',
     borderRadius: '0',
-    margin: '15px auto',
+    margin: '0 auto',
     fontSize: '1.5rem',
     '& svg':{
       color: '#000000', 
@@ -168,13 +185,15 @@ class PaletteForm extends React.Component {
     super(props);
     this.state = {
       open: false,
-      currentColor: 'lime',
-      colors: ['#ffffff']
+      currentColor: 'goldenrod',
+      newColorName: '',
+      colors: []
     }
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.updateColorState = this.updateColorState.bind(this);
     this.addColor = this.addColor.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleDrawerOpen() {
@@ -191,16 +210,28 @@ class PaletteForm extends React.Component {
   }
 
   addColor(){
-    this.setState({colors: [...this.state.colors, this.state.currentColor]},
-      () => console.log(JSON.stringify(this.state.colors)));
+
+    console.log(`newColor: ${this.state.currentColor} | newColorName: ${this.state.newColorName}`);
+    
+    const newColor = {
+      color: this.state.currentColor,
+      name: this.state.newColorName
+    };
+
+    this.setState({ colors: [...this.state.colors, newColor] });
+  }
+
+  handleChange(evt){
+    console.log(`newColorName: ${evt.target.value}`);
+    this.setState({newColorName: evt.target.value});
   }
 
   generatePaletteColors(){
     let currentPaletteColors = this.state.colors.map((color) => {
-      let colorIsDark = chroma(color).luminance() <= .6;
+      let colorIsDark = chroma(color.color).luminance() <= .6;
       let textColor = colorIsDark ? '#ffffff' : '#000000';
       console.log(`colorIsDark: ${colorIsDark} | textColor: ${textColor}`);
-      return(<ColorElement key={uuidv4()} color={color} contentColor ={textColor} style={{fontSize: '14px'}} />);
+      return(<ColorElement key={uuidv4()} color={color.color} colorName={color.name} contentColor ={textColor} style={{fontSize: '14px'}} />);
     });
     return currentPaletteColors;
   }
@@ -269,20 +300,23 @@ class PaletteForm extends React.Component {
               </div>
 
               <ChromePicker color={this.state.currentColor} onChangeComplete={(newColor) => this.updateColorState(newColor)} />
-
-              <Button 
-                variant="contained" 
-                size="large" 
-                color='primary' 
-                className={`${classes.margin} ${classes.colorPickerConsoleBtn}`}
-                style={{
-                  backgroundColor: this.state.currentColor,
-                  color: addBtnColor,
-                }}
-                onClick={this.addColor}
-              >
+              
+              <ValidatorForm onSubmit={this.addColor}>
+                <TextValidator value={this.state.newColorName} onChange={this.handleChange} />  
+                <Button 
+                  variant="contained" 
+                  size="large" 
+                  color='primary'
+                  type='submit' 
+                  className={`${classes.margin} ${classes.colorPickerConsoleBtn}`}
+                  style={{
+                    backgroundColor: this.state.currentColor,
+                    color: addBtnColor,
+                  }}
+                >
                 ADD COLOR
               </Button>
+              </ValidatorForm>
 
             </div>
           </div>

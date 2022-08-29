@@ -1,20 +1,21 @@
 body {
+  /* height: 100vh; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1f1f1f;
+  background-color: #101010;
   /* background-image: url('./assets/imgs/david-trinks-bg.jpg');*//* background image by David Trinks on unspash. */
   /* background-image: url('./assets/imgs/gradienta-bg-1.jpg');*//* background image by Gradienta on unspash. */
   /*background-image: url('./assets/imgs/gradienta-bg-2.jpg');*//* background image by Gradienta on unspash. */
   /*background-image: url('./assets/imgs/marek-piwnicki-bg-1.jpg');*//* background image by Marek Piwnikcki on unspash. */
-  background-image: url('./assets/imgs/marek-piwnicki-bg-2.jpg');/* background image by Marek Piwnikcki on unspash. */
-  background-position: top center;
+ /*background-image: url('./assets/imgs/marek-piwnicki-bg-2.jpg');/* background image by Marek Piwnikcki on unspash. */
+  /* background-position: top center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: cover; */
 }
 
 code {

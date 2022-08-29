@@ -80,7 +80,7 @@ function ColorElement(props) {
             <section className={props.classes.colorElement}  style={{backgroundColor: props.color, color: props.contentColor}}>
                 <div className={props.classes.colorElementDetails} >
                     <div className={props.classes.colorElementName} >
-                        {props.color}       
+                        {props.colorName}       
                     </div>
                     <div className={props.classes.colorElementOperation} >
                         <DeleteIcon cla/>
