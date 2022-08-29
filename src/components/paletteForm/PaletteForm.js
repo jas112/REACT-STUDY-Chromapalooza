@@ -30,6 +30,7 @@ import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import ColorElement from '../colorElement/ColorElement';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { startTransition } from 'react';
 
 const drawerWidth = 240;
 
@@ -120,10 +121,12 @@ const styles = theme => ({
 
   colorPickerConsole: {
     width: '100%',
+    // height: '70%',
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'space-around',
     alignItems: 'center',
+    // border: '1px solid green',
     '& .colorPickerConsoleBtn': {
       width: '225px',
       maxWidth: '100%',
@@ -143,6 +146,9 @@ const styles = theme => ({
         margin: '0 auto',
         borderRadius: '0',
         backgroundColor: '#070707 !important',
+        // position: 'relative',
+        // bottom: '20px',
+
       }
     },
 
@@ -187,13 +193,29 @@ class PaletteForm extends React.Component {
       open: false,
       currentColor: 'goldenrod',
       newColorName: '',
-      colors: []
+      colors: [{color: 'goldenrod', name: 'goldenrod'}]
     }
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.updateColorState = this.updateColorState.bind(this);
     this.addColor = this.addColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+  
+  componentDidMount(){
+
+    ValidatorForm.addValidationRule('isColorNameUnique', (value) => 
+      this.state.colors.every(
+        ({name}) => name.toLowerCase() !== value.toLowerCase()
+      )
+    );
+
+    ValidatorForm.addValidationRule('isColorUnique', (value) => 
+      this.state.colors.every(
+        ({color}) => color !== this.state.currentColor
+      )
+    );
+
   }
 
   handleDrawerOpen() {
@@ -302,7 +324,18 @@ class PaletteForm extends React.Component {
               <ChromePicker color={this.state.currentColor} onChangeComplete={(newColor) => this.updateColorState(newColor)} />
               
               <ValidatorForm onSubmit={this.addColor}>
-                <TextValidator value={this.state.newColorName} onChange={this.handleChange} />  
+                <TextValidator 
+                  value={this.state.newColorName} 
+                  onChange={this.handleChange} 
+                  validators={[
+                    'required',
+                    'isColorNameUnique',
+                    'isColorUnique']}
+                  errorMessages={[
+                    'Enter a color name...',
+                    'Color name not unique...try again.', 
+                    'Color value not unique...try again.']}
+                />  
                 <Button 
                   variant="contained" 
                   size="large" 
