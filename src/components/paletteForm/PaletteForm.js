@@ -104,6 +104,11 @@ const styles = theme => ({
 
   cpToolBar: {
     backgroundColor: '#1f1f1f', 
+    width:'100% !important',
+    // border: '1px solid red',
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-start',
   },
 
   fab: {
@@ -117,6 +122,7 @@ const styles = theme => ({
     flexFlow: 'column nowrap',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    // border: '1px solid red'
   },
 
   colorPickerConsole: {
@@ -145,14 +151,9 @@ const styles = theme => ({
         maxWidth: '100%',
         margin: '0 auto',
         borderRadius: '0',
-        backgroundColor: '#070707 !important',
-        // position: 'relative',
-        // bottom: '20px',
-
+        backgroundColor: '#333333 !important',
       }
     },
-
-
   },
 
   colorPickerSubConsole: {
@@ -182,7 +183,54 @@ const styles = theme => ({
     '& svg':{
       color: '#000000', 
     }
-  }
+  },
+
+  txtValidatorFrame: {
+    width: '100%',
+    height: '100px',
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+  txtValidatorFrameRow: {
+    height: '100px',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    alignSelf: 'flex-end !important',
+    flexGrow: '1',
+  },
+
+  txtValidatorFrameRow2: {
+    width: '100%',
+    height: '100px',
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    flexGrow: '1',
+    padding: '0 20px',
+    // border: '1px solid white',
+    '& .MuiInputBase-root': {
+      width: '225px !important',
+      maxWidth: '100%',
+      margin: '0 auto',
+      borderRadius: '0',
+      backgroundColor: '#333333 !important',
+    },
+    '& button': {
+      height: '54px',
+      width: '150px',
+      maxWidth: '100%',
+      borderRadius: '0',
+      fontSize: '.9rem',
+      margin: '0 auto',
+    }
+  },
 
 });
 
@@ -191,15 +239,18 @@ class PaletteForm extends React.Component {
     super(props);
     this.state = {
       open: false,
-      currentColor: 'goldenrod',
+      currentColor: 'black',
       newColorName: '',
-      colors: [{color: 'goldenrod', name: 'goldenrod'}]
+      newPaletteName: '',
+      colors: []
     }
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.updateColorState = this.updateColorState.bind(this);
     this.addColor = this.addColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFinalPaletteSubmit = this.handleFinalPaletteSubmit.bind(this);
+    this.clearPalette = this.clearPalette.bind(this);
   }
   
   componentDidMount(){
@@ -213,6 +264,12 @@ class PaletteForm extends React.Component {
     ValidatorForm.addValidationRule('isColorUnique', (value) => 
       this.state.colors.every(
         ({color}) => color !== this.state.currentColor
+      )
+    );
+
+    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => 
+      this.props.availablePalettes.every(
+        ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
       )
     );
 
@@ -240,12 +297,33 @@ class PaletteForm extends React.Component {
       name: this.state.newColorName
     };
 
-    this.setState({ colors: [...this.state.colors, newColor] });
+    this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
+  }
+
+  handleFinalPaletteSubmit(){
+
+    let paletteName = this.state.newPaletteName;
+    // let newPaletteName = 'Test Palette';
+
+    let newPalette = {
+      paletteName: paletteName,
+      id: paletteName.toLowerCase().replace(/ /g,'-'),
+      emoji: '',
+      colors: this.state.colors
+    };
+    this.props.savePalette(newPalette);
+    this.props.history.push('/');
+  }
+
+  clearPalette(){
+    this.setState({colors: [], newColorName: 'black'});
   }
 
   handleChange(evt){
-    console.log(`newColorName: ${evt.target.value}`);
-    this.setState({newColorName: evt.target.value});
+    
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
   }
 
   generatePaletteColors(){
@@ -292,6 +370,31 @@ class PaletteForm extends React.Component {
                   </NavLink>
               </div>
             </Typography>
+            <div className={classes.txtValidatorFrameRow}>
+              <ValidatorForm onSubmit={this.handleFinalPaletteSubmit}>
+                <div className={classes.txtValidatorFrameRow2}>
+                  <TextValidator
+                    label='PALETTE NAME'
+                    name='newPaletteName' 
+                    value={this.state.newPaletteName} 
+                    validators={[
+                      'required',
+                      'isPaletteNameUnique']}
+                    errorMessages={[
+                      'Enter a palette name...',
+                      'Palette name not unique...try again.']}
+                    onChange={this.handleChange}
+                  />
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    size='small' 
+                    type='submit'>
+                      SAVE PALETTE
+                  </Button>
+                </div>
+              </ValidatorForm>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -317,25 +420,30 @@ class PaletteForm extends React.Component {
               <Typography varient='h4'>PALETTE DESIGN CONSOLE</Typography>
 
               <div className={classes.colorPickerSubConsole}>
-                <Button variant="contained" size="large" color="secondary" className={classes.margin}>CLEAR PALETTE</Button>
+                <Button variant="contained" size="large" color="secondary" className={classes.margin} onClick={this.clearPalette}>CLEAR PALETTE</Button>
                 <Button variant="contained" size="large" color="primary" className={classes.margin}>RANDOM COLOR</Button>
               </div>
 
               <ChromePicker color={this.state.currentColor} onChangeComplete={(newColor) => this.updateColorState(newColor)} />
               
               <ValidatorForm onSubmit={this.addColor}>
-                <TextValidator 
-                  value={this.state.newColorName} 
-                  onChange={this.handleChange} 
-                  validators={[
-                    'required',
-                    'isColorNameUnique',
-                    'isColorUnique']}
-                  errorMessages={[
-                    'Enter a color name...',
-                    'Color name not unique...try again.', 
-                    'Color value not unique...try again.']}
-                />  
+                <div className={classes.txtValidatorFrame}>
+                  <TextValidator
+                    label='COLOR NAME'
+                    name='newColorName' 
+                    value={this.state.newColorName} 
+                    onChange={this.handleChange} 
+                    validators={[
+                      'required',
+                      'isColorNameUnique',
+                      'isColorUnique']}
+                    errorMessages={[
+                      'Enter a color name...',
+                      'Color name not unique...try again.', 
+                      'Color value not unique...try again.']}
+                  /> 
+                </div>
+ 
                 <Button 
                   variant="contained" 
                   size="large" 

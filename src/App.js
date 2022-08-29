@@ -5,12 +5,27 @@ import PaletteList from './components/paletteList/PaletteList';
 import PaletteForm from './components/paletteForm/PaletteForm';
 import SingleColorPalette from './components/singleColorPalette/SingleColorPalette';
 import seedPalettes from './resources/seedPalettes';
-import { generateColorPalette, generateScaledPaletteById, generateSingleColorPalette } from './resources/chromaColorHelper';
+// import { generateColorPalette, generateScaledPaletteById, generateSingleColorPalette } from './resources/chromaColorHelper';
+import { generateScaledPaletteById, generateSingleColorPalette } from './resources/chromaPaletteHelper';
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      availablePalettes: [...seedPalettes],
+    }
+    this.savePalette = this.savePalette.bind(this);
+  }
+
+  savePalette(newPalette){
+      console.log(`newPalette: ${JSON.stringify(newPalette)}`);
+      this.setState({availablePalettes: [...this.state.availablePalettes, newPalette]})
+  }
 
   render(){
+
+    const {availablePalettes} = this.state;
 
     // let testPalette = generateScaledPaletteById('material-ui-colors');
     // console.log(`testPalette: ${JSON.stringify(testPalette)}`);
@@ -25,13 +40,12 @@ class App extends Component {
 
     return (
       <div className="App">
-
         <Switch>
-          <Route exact path='/' render={(routeProps) => <PaletteList palettes={seedPalettes} {...routeProps} />} />
+          <Route exact path='/' render={(routeProps) => <PaletteList palettes={availablePalettes} {...routeProps} />} />
           {/* <Route exact path='/palette/:id' render={routeProps => (<Palette {...routeProps} />)}/> */}
-          <Route exact path='/palette/new' render={routeProps => (<PaletteForm {...routeProps} />)}/>
-          <Route exact path='/palette/:id' render={routeProps => (<Palette palette={ generateScaledPaletteById(routeProps.match.params.id)} />)}/>
-          <Route exact path='/palette/:paletteId/:colorId' render={routeProps => (<SingleColorPalette palette={generateSingleColorPalette(routeProps.match.params.paletteId, routeProps.match.params.colorId)} />)}/>
+          <Route exact path='/palette/new' render={routeProps => (<PaletteForm {...routeProps} availablePalettes={availablePalettes} savePalette={this.savePalette} />)}/>
+          <Route exact path='/palette/:id' render={routeProps => (<Palette palette={ generateScaledPaletteById(routeProps.match.params.id, availablePalettes)} />)}/>
+          <Route exact path='/palette/:paletteId/:colorId' render={routeProps => (<SingleColorPalette palette={generateSingleColorPalette(routeProps.match.params.paletteId, routeProps.match.params.colorId, availablePalettes)} />)}/>
         </Switch>
 
         {/* <div> */}
