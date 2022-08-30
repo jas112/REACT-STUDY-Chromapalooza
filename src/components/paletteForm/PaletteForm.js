@@ -344,8 +344,9 @@ class PaletteForm extends React.Component {
 
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({colors}) =>({
-      colors: arrayMove(colors, oldIndex, newIndex),
+      // colors: arrayMove(colors, oldIndex, newIndex),
       // colors: arrayMoveMutable (colors, oldIndex, newIndex),
+      colors: arrayMoveImmutable(colors, oldIndex, newIndex),
     }));
   }
 
