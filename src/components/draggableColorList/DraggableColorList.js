@@ -53,7 +53,9 @@ const DraggableColorList = SortableContainer(({classes, colors, removeColor}) =>
                     colorId={color.id}
                     contentColor ={textColor} 
                     style={{fontSize: '14px'}} 
-                    handleClick={() => removeColor(color.name)}
+                    // handleClick={() => removeColor(color.name)}
+                    removeColor={() => removeColor(color.name)}
+                    removeColor1={() => console.log(color.name)}
                 />
             )
         })}
@@ -63,3 +65,5 @@ const DraggableColorList = SortableContainer(({classes, colors, removeColor}) =>
 })
 
 export default withStyles(styles)(DraggableColorList)
+
+

@@ -15,24 +15,25 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
+// import AddIcon from '@material-ui/icons/Add';
+// import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
-import NavigationIcon from '@material-ui/icons/Navigation';
+// import NavigationIcon from '@material-ui/icons/Navigation';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import ColorElement from '../colorElement/ColorElement';
 import DraggableColorList from '../draggableColorList/DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { startTransition } from 'react';
+// import { startTransition } from 'react';
 import {arrayMove} from 'react-sortable-hoc';
+import { arrayMoveImmutable, arrayMoveMutable } from 'array-move';
 
 const drawerWidth = 240;
 
@@ -293,13 +294,13 @@ class PaletteForm extends React.Component {
   }
 
   updateColorState(colorValue){
-    console.log(colorValue);
+    // console.log(colorValue);
     this.setState({currentColor: colorValue.hex});
   }
 
   addColor(){
 
-    console.log(`newColor: ${this.state.currentColor} | newColorName: ${this.state.newColorName}`);
+    // console.log(`newColor: ${this.state.currentColor} | newColorName: ${this.state.newColorName}`);
     
     const newColor = {
       color: this.state.currentColor,
@@ -344,14 +345,27 @@ class PaletteForm extends React.Component {
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({colors}) =>({
       colors: arrayMove(colors, oldIndex, newIndex),
+      // colors: arrayMoveMutable (colors, oldIndex, newIndex),
     }));
   }
+
+  // onSortEnd(oldIndex, newIndex){
+  //   let paletteColors = [...this.state.colors];
+  //   let modifiedPaletteColors = arrayMoveMutable (paletteColors, oldIndex, newIndex);
+  //   this.setState({colors: modifiedPaletteColors});
+  // }
+
+  // onSortEnd = ({oldIndex, newIndex}) => {
+  //   let paletteColors = [...this.state.colors];
+  //   let modifiedPaletteColors = arrayMoveImmutable(paletteColors, oldIndex, newIndex);
+  //   this.setState({colors: modifiedPaletteColors});
+  // }
 
   generatePaletteColors(){
     let currentPaletteColors = this.state.colors.map((color) => {
       let colorIsDark = chroma(color.color).luminance() <= .6;
       let textColor = colorIsDark ? '#ffffff' : '#000000';
-      console.log(`colorIsDark: ${colorIsDark} | textColor: ${textColor}`);
+      // console.log(`colorIsDark: ${colorIsDark} | textColor: ${textColor}`);
       return(<ColorElement 
         key={uuidv4()} 
         color={color.color} 
@@ -370,7 +384,7 @@ class PaletteForm extends React.Component {
     const { open, currentColor } = this.state;
 
     let isDarkColor = chroma(currentColor).luminance() <= .55;
-    console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
+    // console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
     let addBtnColor = isDarkColor ? '#ffffff' : '#000000';
     // let currentPalette = this.generatePaletteColors();
     
@@ -504,7 +518,8 @@ class PaletteForm extends React.Component {
 
             <DraggableColorList 
               colors={this.state.colors} 
-              removeColor={this.removeColor} 
+              removeColor={this.removeColor}
+              distance={1} 
               axis='xy'
               onSortEnd={this.onSortEnd}
             />
