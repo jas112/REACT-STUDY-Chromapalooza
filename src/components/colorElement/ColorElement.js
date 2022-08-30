@@ -1,4 +1,5 @@
 import React from 'react';
+import {SortableElement} from 'react-sortable-hoc';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -81,7 +82,7 @@ const styles = {
     
 }
 
-function ColorElement(props) {
+const ColorElement = SortableElement((props) => {
     const { classes, color, colorName, contentColor, handleClick} = props;
   return (
     <div className={classes.colorElementOuterFrame} >
@@ -99,6 +100,6 @@ function ColorElement(props) {
         </div>
     </div>
   )
-}
+});
 
 export default withStyles(styles)(ColorElement);

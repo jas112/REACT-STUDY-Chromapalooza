@@ -29,8 +29,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import ColorElement from '../colorElement/ColorElement';
+import DraggableColorList from '../draggableColorList/DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { startTransition } from 'react';
+import {arrayMove} from 'react-sortable-hoc';
 
 const drawerWidth = 240;
 
@@ -339,6 +341,12 @@ class PaletteForm extends React.Component {
     });
   }
 
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({colors}) =>({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  }
+
   generatePaletteColors(){
     let currentPaletteColors = this.state.colors.map((color) => {
       let colorIsDark = chroma(color.color).luminance() <= .6;
@@ -364,7 +372,7 @@ class PaletteForm extends React.Component {
     let isDarkColor = chroma(currentColor).luminance() <= .55;
     console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
     let addBtnColor = isDarkColor ? '#ffffff' : '#000000';
-    let currentPalette = this.generatePaletteColors();
+    // let currentPalette = this.generatePaletteColors();
     
     return (
       <div className={classes.root}>
@@ -491,9 +499,16 @@ class PaletteForm extends React.Component {
         >
           <div className={classes.drawerHeader} />
           <div className={classes.contentTopSpacer}></div>
-            {currentPalette}
-          
+            
+            {/* {currentPalette} */}
 
+            <DraggableColorList 
+              colors={this.state.colors} 
+              removeColor={this.removeColor} 
+              axis='xy'
+              onSortEnd={this.onSortEnd}
+            />
+          
         </main>
       </div>
     );
