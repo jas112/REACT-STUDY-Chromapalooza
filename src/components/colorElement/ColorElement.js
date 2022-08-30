@@ -28,6 +28,7 @@ const styles = {
         flexFlow: 'column nowrap',
         justifyContent: 'center',
         alignItems: 'center',
+        transition: 'all .3s ease-in-out',
         '&:hover': {
             '& section': {
                 width: '93%',
@@ -66,24 +67,32 @@ const styles = {
 
     colorElementOperation: {
         color: 'inherit',
-        '& .DeleteIcon': {
-            fontSize: '15px !important',
+        '& svg': {
+            fontSize: '18px !important',
+            opacity: '1',
+            transition: 'all .3s ease-in-out',
+            '&:hover': {
+                color: 'black',
+                transform: 'scale(1.5)',
+            }
+
         }
     },
     
 }
 
 function ColorElement(props) {
+    const { classes, color, colorName, contentColor, handleClick} = props;
   return (
-    <div className={props.classes.colorElementOuterFrame} >
-        <div className={props.classes.colorElementInnerFrame} >
-            <section className={props.classes.colorElement}  style={{backgroundColor: props.color, color: props.contentColor}}>
-                <div className={props.classes.colorElementDetails} >
-                    <div className={props.classes.colorElementName} >
-                        {props.colorName}       
+    <div className={classes.colorElementOuterFrame} >
+        <div className={classes.colorElementInnerFrame} >
+            <section className={classes.colorElement}  style={{backgroundColor: color, color: contentColor}}>
+                <div className={classes.colorElementDetails} >
+                    <div className={classes.colorElementName} >
+                        {colorName}       
                     </div>
-                    <div className={props.classes.colorElementOperation} >
-                        <DeleteIcon cla/>
+                    <div className={classes.colorElementOperation} >
+                        <DeleteIcon onClick={handleClick} />
                     </div>
                 </div>
             </section>

@@ -232,6 +232,12 @@ const styles = theme => ({
     }
   },
 
+  contentTopSpacer: {
+    width: '100%',
+    height: '2%',
+    // border: '1px solid green',
+  }
+
 });
 
 class PaletteForm extends React.Component {
@@ -248,6 +254,7 @@ class PaletteForm extends React.Component {
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.updateColorState = this.updateColorState.bind(this);
     this.addColor = this.addColor.bind(this);
+    this.removeColor = this.removeColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleFinalPaletteSubmit = this.handleFinalPaletteSubmit.bind(this);
     this.clearPalette = this.clearPalette.bind(this);
@@ -300,6 +307,12 @@ class PaletteForm extends React.Component {
     this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
   }
 
+  removeColor(colorName){
+    let newPaletteColors = this.state.colors.filter(color => color.name !== colorName);
+    this.setState({colors:  newPaletteColors});
+  }
+
+
   handleFinalPaletteSubmit(){
 
     let paletteName = this.state.newPaletteName;
@@ -331,7 +344,15 @@ class PaletteForm extends React.Component {
       let colorIsDark = chroma(color.color).luminance() <= .6;
       let textColor = colorIsDark ? '#ffffff' : '#000000';
       console.log(`colorIsDark: ${colorIsDark} | textColor: ${textColor}`);
-      return(<ColorElement key={uuidv4()} color={color.color} colorName={color.name} contentColor ={textColor} style={{fontSize: '14px'}} />);
+      return(<ColorElement 
+        key={uuidv4()} 
+        color={color.color} 
+        colorName={color.name} 
+        // colorId={color.id}
+        contentColor ={textColor} 
+        style={{fontSize: '14px'}} 
+        handleClick={() => this.removeColor(color.name)}
+      />);
     });
     return currentPaletteColors;
   }
@@ -469,7 +490,7 @@ class PaletteForm extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-
+          <div className={classes.contentTopSpacer}></div>
             {currentPalette}
           
 
