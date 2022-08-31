@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,6 +10,57 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
+const drawerWidth = 360;
+
+const styles = theme => ({
+    appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+      },
+    appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginLeft: 12,
+        marginRight: 20,
+        color: '#daa520',
+    },
+    txtValidatorFrameRow2: {
+        width: '100%',
+        height: '100px',
+        display: 'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        alignSelf: 'flex-end',
+        flexGrow: '1',
+        padding: '0 20px',
+        // border: '1px solid white',
+        '& .MuiInputBase-root': {
+            width: '225px !important',
+            maxWidth: '100%',
+            margin: '0 auto',
+            borderRadius: '0',
+            backgroundColor: '#333333 !important',
+        },
+        '& button': {
+            height: '54px',
+            width: '150px',
+            maxWidth: '100%',
+            borderRadius: '0',
+            fontSize: '.9rem',
+            margin: '0 auto',
+        }
+    },
+});
 
 class PaletteFormNav extends Component {
     constructor(props){
@@ -96,4 +148,4 @@ class PaletteFormNav extends Component {
   }
 }
 
-export default PaletteFormNav;
+export default withStyles(styles, { withTheme: true })(PaletteFormNav);

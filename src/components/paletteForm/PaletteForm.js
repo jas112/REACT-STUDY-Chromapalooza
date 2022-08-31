@@ -6,46 +6,23 @@ import { withStyles } from '@material-ui/core/styles';
 import PaletteFormNav from '../paletteFormNav/PaletteFormNav';
 import PaletteFormColorPicker from '../paletteFormColorPicker/PaletteFormColorPicker';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import ColorElement from '../colorElement/ColorElement';
 import DraggableColorList from '../draggableColorList/DraggableColorList';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-// import { startTransition } from 'react';
 import {arrayMove} from 'react-sortable-hoc';
 import { arrayMoveImmutable, arrayMoveMutable } from 'array-move';
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
 const styles = theme => ({
   root: {
     display: 'flex',
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-    color: '#daa520',
   },
   hide: {
     display: 'none',
@@ -105,123 +82,6 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
 
-  colorPickerAssembly: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    // border: '1px solid red'
-  },
-
-  colorPickerConsole: {
-    width: '100%',
-    // height: '70%',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    // border: '1px solid green',
-    '& .colorPickerConsoleBtn': {
-      width: '225px',
-      maxWidth: '100%',
-      margin: '0 auto',
-    },
-    '& .chrome-picker': {
-      background: '#00000060 !important',
-    },
-    '& form': {
-      display: 'flex',
-      flexFlow: 'column nowrap',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      '& .MuiInputBase-root': {
-        width: '225px !important',
-        maxWidth: '100%',
-        margin: '0 auto',
-        borderRadius: '0',
-        backgroundColor: '#333333 !important',
-      }
-    },
-  },
-
-  colorPickerSubConsole: {
-    width: '225px',
-    maxWidth: '100%',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: '5px auto',
-    '& button': {
-      width: '110px',
-      maxWidth: '100%',
-      borderRadius: '0',
-      fontSize: '.5rem',
-      margin: '0 auto',
-    }
-  },
-
-  colorPickerConsoleBtn: {
-    width: '225px',
-    maxWidth: '100%',
-    height: '60px',
-    borderRadius: '0',
-    margin: '0 auto',
-    fontSize: '1.5rem',
-    '& svg':{
-      color: '#000000', 
-    }
-  },
-
-  txtValidatorFrame: {
-    width: '100%',
-    height: '100px',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-
-  txtValidatorFrameRow: {
-    height: '100px',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    alignSelf: 'flex-end !important',
-    flexGrow: '1',
-  },
-
-  txtValidatorFrameRow2: {
-    width: '100%',
-    height: '100px',
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    flexGrow: '1',
-    padding: '0 20px',
-    // border: '1px solid white',
-    '& .MuiInputBase-root': {
-      width: '225px !important',
-      maxWidth: '100%',
-      margin: '0 auto',
-      borderRadius: '0',
-      backgroundColor: '#333333 !important',
-    },
-    '& button': {
-      height: '54px',
-      width: '150px',
-      maxWidth: '100%',
-      borderRadius: '0',
-      fontSize: '.9rem',
-      margin: '0 auto',
-    }
-  },
-
   contentTopSpacer: {
     width: '100%',
     height: '2%',
@@ -278,12 +138,6 @@ class PaletteForm extends React.Component {
       alert(`MAX COLOR COUNT REACHED...`);
     }
     
-    // const newColor = {
-    //   color: this.state.currentColor,
-    //   name: this.state.newColorName
-    // };
-
-    // this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
   }
 
   addRandomColor(){
@@ -380,17 +234,11 @@ class PaletteForm extends React.Component {
   render() {
     const { classes, theme, availablePalettes, routeProps } = this.props;
     const { open, hasMaxColorCount, colors } = this.state;
-
-    // let isDarkColor = chroma(currentColor).luminance() <= .55;
-    // console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
-    // let addBtnColor = isDarkColor ? '#ffffff' : '#000000';
-    // let currentPalette = this.generatePaletteColors();
     
     return (
       <div className={classes.root}>
         <PaletteFormNav 
-          {...routeProps} 
-          classes={classes} 
+          {...routeProps}  
           open={open} 
           availablePalettes={availablePalettes} 
           handleSubmit={this.handleFinalPaletteSubmit} 
