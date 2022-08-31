@@ -244,6 +244,9 @@ const styles = theme => ({
 });
 
 class PaletteForm extends React.Component {
+  static defaultProps = {
+    maxColorCount: 20,
+  }
   constructor(props){
     super(props);
     this.state = {
@@ -251,6 +254,7 @@ class PaletteForm extends React.Component {
       currentColor: 'black',
       newColorName: '',
       newPaletteName: '',
+      hasMaxColorCount: this.props.availablePalettes[0].colors.length >= this.props.maxColorCount,
       colors: [...this.props.availablePalettes[0].colors]
     }
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -302,41 +306,72 @@ class PaletteForm extends React.Component {
   addColor(){
 
     // console.log(`newColor: ${this.state.currentColor} | newColorName: ${this.state.newColorName}`);
-    
-    const newColor = {
-      color: this.state.currentColor,
-      name: this.state.newColorName
-    };
 
-    this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
+    let isMaxCountReached = this.state.hasMaxColorCount;
+
+    if(!isMaxCountReached){
+
+      const newColor = {
+        color: this.state.currentColor,
+        name: this.state.newColorName
+      };
+
+      let newColors = [...this.state.colors, newColor];
+      let newBoolValue = newColors.length >= this.props.maxColorCount;
+      
+      this.setState({colors: newColors, hasMaxColorCount: newBoolValue});
+
+    }else{
+      alert(`MAX COLOR COUNT REACHED...`);
+    }
+    
+    // const newColor = {
+    //   color: this.state.currentColor,
+    //   name: this.state.newColorName
+    // };
+
+    // this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
   }
 
   addRandomColor(){
 
-    const availableColors = this.props.availablePalettes.map(p => p.colors).flat();
-    
-    let randomIdx = Math.floor(Math.random()*availableColors.length);
-    let randomColor = availableColors[randomIdx];
-    let randomColorName = randomColor.name;
-    let ColorIsAbsent = this.state.colors.every(({name}) => name.toLowerCase() !== randomColorName.toLowerCase());
+    let isNotMaxCountReached = this.state.hasMaxColorCount;
 
-    console.log(`Initial Pick = randomColorName: ${randomColor.name} | ColorIsAbsent: ${ColorIsAbsent}`);
+    if(!isNotMaxCountReached){
 
-    while (!ColorIsAbsent) {
-      randomIdx = Math.floor(Math.random()*availableColors.length);
-      randomColor = availableColors[randomIdx];
-      randomColorName = randomColor.name;
-      ColorIsAbsent = this.state.colors.every(({name}) => name.toLowerCase() !== randomColorName.toLowerCase());
+      const availableColors = this.props.availablePalettes.map(p => p.colors).flat();
+      
+      let randomIdx = Math.floor(Math.random()*availableColors.length);
+      let randomColor = availableColors[randomIdx];
+      let randomColorName = randomColor.name;
+      let ColorIsAbsent = this.state.colors.every(({name}) => name.toLowerCase() !== randomColorName.toLowerCase());
+
+      console.log(`Initial Pick = randomColorName: ${randomColor.name} | ColorIsAbsent: ${ColorIsAbsent}`);
+
+      while (!ColorIsAbsent) {
+        randomIdx = Math.floor(Math.random()*availableColors.length);
+        randomColor = availableColors[randomIdx];
+        randomColorName = randomColor.name;
+        ColorIsAbsent = this.state.colors.every(({name}) => name.toLowerCase() !== randomColorName.toLowerCase());
+      }
+
+      console.log(`Final Pick = randomColorName: ${randomColor.name}`);
+
+      let newColors = [...this.state.colors, randomColor];
+      let newBoolValue = newColors.length >= this.props.maxColorCount;
+      
+      this.setState({colors: newColors, hasMaxColorCount: newBoolValue});
+
+    }else{
+      alert(`MAX COLOR COUNT REACHED...`);
     }
 
-    console.log(`Final Pick = randomColorName: ${randomColor.name} | ColorIsAbsent: ${ColorIsAbsent}`);
-    
-    this.setState({colors: [...this.state.colors, randomColor]});
   }
 
   removeColor(colorName){
     let newPaletteColors = this.state.colors.filter(color => color.name !== colorName);
-    this.setState({colors:  newPaletteColors});
+    let newBoolValue = newPaletteColors.length >= this.props.maxColorCount;
+    this.setState({colors:  newPaletteColors, hasMaxColorCount: newBoolValue});
   }
 
 
@@ -356,7 +391,7 @@ class PaletteForm extends React.Component {
   }
 
   clearPalette(){
-    this.setState({colors: [], newColorName: 'black'});
+    this.setState({colors: [], newColorName: 'black', hasMaxColorCount: false});
   }
 
   handleChange(evt){
@@ -522,8 +557,9 @@ class PaletteForm extends React.Component {
                     backgroundColor: this.state.currentColor,
                     color: addBtnColor,
                   }}
+                  disabled={this.state.hasMaxColorCount}
                 >
-                ADD COLOR
+                {this.state.hasMaxColorCount ? `PALETTE FULL` : `ADD COLOR`}
               </Button>
               </ValidatorForm>
 
