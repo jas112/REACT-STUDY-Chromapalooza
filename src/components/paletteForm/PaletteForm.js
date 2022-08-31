@@ -251,12 +251,13 @@ class PaletteForm extends React.Component {
       currentColor: 'black',
       newColorName: '',
       newPaletteName: '',
-      colors: []
+      colors: [...this.props.availablePalettes[0].colors]
     }
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.updateColorState = this.updateColorState.bind(this);
     this.addColor = this.addColor.bind(this);
+    this.addRandomColor = this.addRandomColor.bind(this);
     this.removeColor = this.removeColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleFinalPaletteSubmit = this.handleFinalPaletteSubmit.bind(this);
@@ -308,6 +309,29 @@ class PaletteForm extends React.Component {
     };
 
     this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
+  }
+
+  addRandomColor(){
+
+    const availableColors = this.props.availablePalettes.map(p => p.colors).flat();
+    
+    let randomIdx = Math.floor(Math.random()*availableColors.length);
+    let randomColor = availableColors[randomIdx];
+    let randomColorName = randomColor.name;
+    let ColorIsAbsent = this.state.colors.every(({name}) => name.toLowerCase() !== randomColorName.toLowerCase());
+
+    console.log(`Initial Pick = randomColorName: ${randomColor.name} | ColorIsAbsent: ${ColorIsAbsent}`);
+
+    while (!ColorIsAbsent) {
+      randomIdx = Math.floor(Math.random()*availableColors.length);
+      randomColor = availableColors[randomIdx];
+      randomColorName = randomColor.name;
+      ColorIsAbsent = this.state.colors.every(({name}) => name.toLowerCase() !== randomColorName.toLowerCase());
+    }
+
+    console.log(`Final Pick = randomColorName: ${randomColor.name} | ColorIsAbsent: ${ColorIsAbsent}`);
+    
+    this.setState({colors: [...this.state.colors, randomColor]});
   }
 
   removeColor(colorName){
@@ -387,7 +411,7 @@ class PaletteForm extends React.Component {
     let isDarkColor = chroma(currentColor).luminance() <= .55;
     // console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
     let addBtnColor = isDarkColor ? '#ffffff' : '#000000';
-    // let currentPalette = this.generatePaletteColors();
+    let currentPalette = this.generatePaletteColors();
     
     return (
       <div className={classes.root}>
@@ -465,7 +489,7 @@ class PaletteForm extends React.Component {
 
               <div className={classes.colorPickerSubConsole}>
                 <Button variant="contained" size="large" color="secondary" className={classes.margin} onClick={this.clearPalette}>CLEAR PALETTE</Button>
-                <Button variant="contained" size="large" color="primary" className={classes.margin}>RANDOM COLOR</Button>
+                <Button variant="contained" size="large" color="primary" className={classes.margin} onClick={this.addRandomColor}>RANDOM COLOR</Button>
               </div>
 
               <ChromePicker color={this.state.currentColor} onChangeComplete={(newColor) => this.updateColorState(newColor)} />
@@ -520,7 +544,7 @@ class PaletteForm extends React.Component {
             <DraggableColorList 
               colors={this.state.colors} 
               removeColor={this.removeColor}
-              distance={1} 
+              distance={3} 
               axis='xy'
               onSortEnd={this.onSortEnd}
             />

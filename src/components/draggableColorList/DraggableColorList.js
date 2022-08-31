@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import ColorElement from '../colorElement/ColorElement';
 import chroma from 'chroma-js';
-import { SortableContainer } from 'react-sortable-hoc';
+import { sortableContainer } from 'react-sortable-hoc';
 
 const styles = {
     draggableColorListConsole: {
@@ -37,7 +37,7 @@ const styles = {
 //   )
 // }
 
-const DraggableColorList = SortableContainer(({classes, colors, removeColor}) => {
+const DraggableColorList = sortableContainer(({classes, colors, removeColor}) => {
 
   return (
     <div className={classes.draggableColorListConsole}>

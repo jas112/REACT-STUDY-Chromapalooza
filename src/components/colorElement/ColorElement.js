@@ -1,5 +1,5 @@
 import React from 'react';
-import {SortableElement} from 'react-sortable-hoc';
+import {sortableElement} from 'react-sortable-hoc';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -84,8 +84,7 @@ const styles = {
     
 }
 
-// const ColorElement = SortableElement(({ classes, color, colorName, contentColor, removeColor}) => {
-//     // const { classes, color, colorName, contentColor, removeColor} = props;
+// const ColorElement = sortableElement(({ classes, color, colorName, contentColor, removeColor}) => {
 //   return (
 //     <div className={classes.colorElementOuterFrame} >
 //         {/* <div className={classes.colorElementInnerFrame} >  */}
