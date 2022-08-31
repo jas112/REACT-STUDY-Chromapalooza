@@ -158,7 +158,7 @@ class ColorBox extends Component {
 
     generateShowMoreLink(){
         return (
-            <Link to={this.props.colorUrl} onClick={e => e.stopPropagation()}>
+            <Link to={`${this.props.colorUrl}`} onClick={e => e.stopPropagation()}>
                 <span className={this.props.classes.seeMoreBtn}>More</span>
             </Link>
         );

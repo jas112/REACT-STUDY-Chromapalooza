@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import PaletteFormNav from '../paletteFormNav/PaletteFormNav';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-// import AddIcon from '@material-ui/icons/Add';
-// import Icon from '@material-ui/core/Icon';
-import DeleteIcon from '@material-ui/icons/Delete';
-// import NavigationIcon from '@material-ui/icons/Navigation';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import ColorElement from '../colorElement/ColorElement';
@@ -282,12 +268,6 @@ class PaletteForm extends React.Component {
       )
     );
 
-    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => 
-      this.props.availablePalettes.every(
-        ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
-
   }
 
   handleDrawerOpen() {
@@ -375,10 +355,7 @@ class PaletteForm extends React.Component {
   }
 
 
-  handleFinalPaletteSubmit(){
-
-    let paletteName = this.state.newPaletteName;
-    // let newPaletteName = 'Test Palette';
+  handleFinalPaletteSubmit(paletteName){
 
     let newPalette = {
       paletteName: paletteName,
@@ -409,18 +386,6 @@ class PaletteForm extends React.Component {
     }));
   }
 
-  // onSortEnd(oldIndex, newIndex){
-  //   let paletteColors = [...this.state.colors];
-  //   let modifiedPaletteColors = arrayMoveMutable (paletteColors, oldIndex, newIndex);
-  //   this.setState({colors: modifiedPaletteColors});
-  // }
-
-  // onSortEnd = ({oldIndex, newIndex}) => {
-  //   let paletteColors = [...this.state.colors];
-  //   let modifiedPaletteColors = arrayMoveImmutable(paletteColors, oldIndex, newIndex);
-  //   this.setState({colors: modifiedPaletteColors});
-  // }
-
   generatePaletteColors(){
     let currentPaletteColors = this.state.colors.map((color) => {
       let colorIsDark = chroma(color.color).luminance() <= .6;
@@ -440,66 +405,24 @@ class PaletteForm extends React.Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, availablePalettes, routeProps } = this.props;
     const { open, currentColor } = this.state;
 
     let isDarkColor = chroma(currentColor).luminance() <= .55;
     // console.log(`color ${currentColor} | isDarkColor ${isDarkColor}`);
     let addBtnColor = isDarkColor ? '#ffffff' : '#000000';
-    let currentPalette = this.generatePaletteColors();
+    // let currentPalette = this.generatePaletteColors();
     
     return (
       <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar className={classes.cpToolBar} disableGutters={!open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              <div className='NavBar-branding-box'>
-                  <NavLink className='NavBar-branding' to='/'>
-                      chromapalooza
-                  </NavLink>
-              </div>
-            </Typography>
-            <div className={classes.txtValidatorFrameRow}>
-              <ValidatorForm onSubmit={this.handleFinalPaletteSubmit}>
-                <div className={classes.txtValidatorFrameRow2}>
-                  <TextValidator
-                    label='PALETTE NAME'
-                    name='newPaletteName' 
-                    value={this.state.newPaletteName} 
-                    validators={[
-                      'required',
-                      'isPaletteNameUnique']}
-                    errorMessages={[
-                      'Enter a palette name...',
-                      'Palette name not unique...try again.']}
-                    onChange={this.handleChange}
-                  />
-                  <Button 
-                    variant="contained" 
-                    color="secondary" 
-                    size='small' 
-                    type='submit'>
-                      SAVE PALETTE
-                  </Button>
-                </div>
-              </ValidatorForm>
-            </div>
-          </Toolbar>
-        </AppBar>
+        <PaletteFormNav 
+          {...routeProps} 
+          classes={classes} 
+          open={open} 
+          availablePalettes={availablePalettes} 
+          handleSubmit={this.handleFinalPaletteSubmit} 
+          handleDrawerOpen={this.handleDrawerOpen}
+        />
         <Drawer
           className={classes.drawer}
           variant="persistent"
