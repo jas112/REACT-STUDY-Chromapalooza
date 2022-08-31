@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
-const drawerWidth = 360;
+const drawerWidth = 240;
 
 const styles = theme => ({
     appBar: {
@@ -33,6 +33,25 @@ const styles = theme => ({
         marginRight: 20,
         color: '#daa520',
     },
+    cpToolBar: {
+        backgroundColor: '#1f1f1f', 
+        width:'100% !important',
+        // border: '1px solid red',
+        display: 'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'flex-start',
+    },
+
+    txtValidatorFrameRow: {
+        height: '100px',
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        alignSelf: 'flex-end !important',
+        flexGrow: '1',
+    },
+    
     txtValidatorFrameRow2: {
         width: '100%',
         height: '100px',
@@ -60,6 +79,7 @@ const styles = theme => ({
             margin: '0 auto',
         }
     },
+    
 });
 
 class PaletteFormNav extends Component {

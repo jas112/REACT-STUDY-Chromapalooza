@@ -18,7 +18,7 @@ import DraggableColorList from '../draggableColorList/DraggableColorList';
 import {arrayMove} from 'react-sortable-hoc';
 import { arrayMoveImmutable, arrayMoveMutable } from 'array-move';
 
-const drawerWidth = 360;
+const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
@@ -48,6 +48,8 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    height: '100px',
+    minHeight: '100px !important'
   },
   content: {
     height: 'calc(100vh - 64px) !important',
@@ -69,24 +71,97 @@ const styles = theme => ({
     marginLeft: 0,
   },
 
-  cpToolBar: {
-    backgroundColor: '#1f1f1f', 
-    width:'100% !important',
-    // border: '1px solid red',
+  colorPickerAssembly: {
+    width: '100%',
+    height: '100%',
     display: 'flex',
-    flexFlow: 'row wrap',
+    flexFlow: 'column nowrap',
     justifyContent: 'flex-start',
+    alignItems: 'center',
+    // border: '1px solid red'
   },
 
-  fab: {
-    margin: theme.spacing.unit,
-  },
+colorPickerConsole: {
+    width: '100%',
+    // height: '70%',
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    // border: '1px solid green',
+    '& .colorPickerConsoleBtn': {
+        width: '225px',
+        maxWidth: '100%',
+        margin: '0 auto',
+    },
+    '& .chrome-picker': {
+        background: '#00000060 !important',
+    },
+    '& form': {
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        '& .MuiInputBase-root': {
+        width: '225px !important',
+        maxWidth: '100%',
+        margin: '0 auto',
+        borderRadius: '0',
+        backgroundColor: '#333333 !important',
+        }
+    },
+},
+
+cpToolBar: {
+  backgroundColor: '#1f1f1f', 
+  width:'100% !important',
+  // border: '1px solid red',
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'flex-start',
+},
+
+colorPickerSubConsole: {
+    width: '225px',
+    maxWidth: '100%',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    margin: '5px auto',
+    '& button': {
+        width: '110px',
+        maxWidth: '100%',
+        borderRadius: '0',
+        fontSize: '.5rem',
+        margin: '0 auto',
+    }
+},
 
   contentTopSpacer: {
     width: '100%',
-    height: '2%',
+    height: '0%',
     // border: '1px solid green',
-  }
+  },
+  
+  verticalSpacer5: {
+    width: '100%',
+    height: '5px',
+    backgroundColor: 'transparent',
+  },
+
+  verticalSpacer10: {
+    width: '100%',
+    height: '10px',
+    backgroundColor: 'transparent',
+  },
+
+  verticalSpacer20: {
+    width: '100%',
+    height: '20px',
+    backgroundColor: 'transparent',
+  },
 
 });
 
@@ -238,7 +313,8 @@ class PaletteForm extends React.Component {
     return (
       <div className={classes.root}>
         <PaletteFormNav 
-          {...routeProps}  
+          {...routeProps} 
+          classes={classes} 
           open={open} 
           availablePalettes={availablePalettes} 
           handleSubmit={this.handleFinalPaletteSubmit} 
@@ -264,12 +340,18 @@ class PaletteForm extends React.Component {
 
             <div className={classes.colorPickerConsole}>
 
+            <div className={classes.verticalSpacer10}></div>
+
               <Typography varient='h4'>PALETTE DESIGN CONSOLE</Typography>
+
+              <div className={classes.verticalSpacer10}></div>
 
               <div className={classes.colorPickerSubConsole}>
                 <Button variant="contained" size="large" color="secondary" className={classes.margin} onClick={this.clearPalette}>CLEAR PALETTE</Button>
                 <Button variant="contained" size="large" color="primary" className={classes.margin} onClick={this.addRandomColor} disabled={this.state.hasMaxColorCount}>RANDOM COLOR</Button>
               </div>
+
+              <div className={classes.verticalSpacer20}></div>
 
               <PaletteFormColorPicker 
                 classes={classes}

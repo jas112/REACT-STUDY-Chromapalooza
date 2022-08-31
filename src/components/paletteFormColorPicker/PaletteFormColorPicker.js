@@ -5,64 +5,9 @@ import {ChromePicker} from 'react-color';
 import chroma from 'chroma-js';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
-const styles = {
-    colorPickerAssembly: {
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexFlow: 'column nowrap',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        // border: '1px solid red'
-      },
-    
-    colorPickerConsole: {
-        width: '100%',
-        // height: '70%',
-        display: 'flex',
-        flexFlow: 'column nowrap',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        // border: '1px solid green',
-        '& .colorPickerConsoleBtn': {
-            width: '225px',
-            maxWidth: '100%',
-            margin: '0 auto',
-        },
-        '& .chrome-picker': {
-            background: '#00000060 !important',
-        },
-        '& form': {
-            display: 'flex',
-            flexFlow: 'column nowrap',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            '& .MuiInputBase-root': {
-            width: '225px !important',
-            maxWidth: '100%',
-            margin: '0 auto',
-            borderRadius: '0',
-            backgroundColor: '#333333 !important',
-            }
-        },
-    },
+const drawerWidth = 240;
 
-    colorPickerSubConsole: {
-        width: '225px',
-        maxWidth: '100%',
-        display: 'flex',
-        flexFlow: 'row nowrap',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '5px auto',
-        '& button': {
-            width: '110px',
-            maxWidth: '100%',
-            borderRadius: '0',
-            fontSize: '.5rem',
-            margin: '0 auto',
-        }
-    },
+const styles = theme => ({
 
     colorPickerConsoleBtn: {
         width: '225px',
@@ -84,18 +29,8 @@ const styles = {
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-
-    txtValidatorFrameRow: {
-        height: '100px',
-        display: 'flex',
-        flexFlow: 'row nowrap',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        alignSelf: 'flex-end !important',
-        flexGrow: '1',
-    },
     
-}
+});
 
 class PaletteFormColorPicker extends Component {
     constructor(props){
@@ -205,4 +140,4 @@ class PaletteFormColorPicker extends Component {
   }
 }
 
-export default withStyles(styles)(PaletteFormColorPicker);
+export default withStyles(styles, { withTheme: true })(PaletteFormColorPicker);
