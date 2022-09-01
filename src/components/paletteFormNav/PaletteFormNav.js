@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import PaletteFormPaletteNameDialog from '../paletteFormPaletteNameDialog/PaletteFormPaletteNameDialog';
 
 const drawerWidth = 240;
 
@@ -51,8 +52,8 @@ const styles = theme => ({
         alignSelf: 'flex-end !important',
         flexGrow: '1',
     },
-    
-    txtValidatorFrameRow2: {
+
+    txtValidatorFrameRowInner: {
         width: '100%',
         height: '100px',
         display: 'flex',
@@ -63,21 +64,21 @@ const styles = theme => ({
         flexGrow: '1',
         padding: '0 20px',
         // border: '1px solid white',
-        '& .MuiInputBase-root': {
-            width: '225px !important',
-            maxWidth: '100%',
-            margin: '0 auto',
-            borderRadius: '0',
-            backgroundColor: '#333333 !important',
-        },
-        '& button': {
-            height: '54px',
-            width: '150px',
-            maxWidth: '100%',
-            borderRadius: '0',
-            fontSize: '.9rem',
-            margin: '0 auto',
-        }
+        // '& .MuiInputBase-root': {
+        //     width: '225px !important',
+        //     maxWidth: '100%',
+        //     margin: '0 auto',
+        //     borderRadius: '0',
+        //     backgroundColor: '#333333 !important',
+        // },
+        // '& button': {
+        //     height: '54px',
+        //     width: '150px',
+        //     maxWidth: '100%',
+        //     borderRadius: '0',
+        //     fontSize: '.9rem',
+        //     margin: '0 auto',
+        // }
     },
     
 });
@@ -108,7 +109,7 @@ class PaletteFormNav extends Component {
 
   render() {
 
-    const {classes, open} = this.props;
+    const {classes, open, availablePalettes, handleSubmit} = this.props;
     const {newPaletteName} = this.state;
 
     return (
@@ -137,7 +138,7 @@ class PaletteFormNav extends Component {
               </div>
             </Typography>
             <div className={classes.txtValidatorFrameRow}>
-              <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
+              {/* <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
                 <div className={classes.txtValidatorFrameRow2}>
                   <TextValidator
                     label='PALETTE NAME'
@@ -159,7 +160,10 @@ class PaletteFormNav extends Component {
                       SAVE PALETTE
                   </Button>
                 </div>
-              </ValidatorForm>
+              </ValidatorForm> */}
+                <div className={classes.txtValidatorFrameRowInner}>
+                    <PaletteFormPaletteNameDialog availablePalettes={availablePalettes} handleSubmit={handleSubmit} />
+                </div>
             </div>
           </Toolbar>
         </AppBar>
