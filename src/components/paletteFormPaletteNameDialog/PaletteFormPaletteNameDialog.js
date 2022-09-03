@@ -140,31 +140,59 @@ class PaletteFormPaletteNameDialog extends Component {
     return (
         <div className={classes.savePaletteDialog}>
             <Button onClick={this.handleClickOpen}>SAVE PALETTE</Button>
-            <Dialog
-                open={open}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-            >
-                <DialogTitle id="form-dialog-title" className={classes.savePaletteDialogTitle}>Save Palette</DialogTitle>
-                <DialogContent className={classes.savePaletteDialogConsole}>
-                    <DialogContentText className={classes.savePaletteDialogText}>
-                        To save your new color palette, please enter a name below.
-                    </DialogContentText>
-                    <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
-                        <div className={classes.txtValidatorFrameRow2}>
-                        <TextValidator
-                            label='PALETTE NAME'
-                            name='newPaletteName' 
-                            value={newPaletteName} 
-                            validators={[
-                            'required',
-                            'isPaletteNameUnique']}
-                            errorMessages={[
-                            'Enter a palette name...',
-                            'Palette name not unique...try again.']}
-                            onChange={this.handleChange}
-                            className={classes.savePaletteDialogPaletteNameInput}
-                        />
+            <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
+                <Dialog
+                    open={open}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <DialogTitle id="form-dialog-title" className={classes.savePaletteDialogTitle}>Save Palette</DialogTitle>
+                    <DialogContent className={classes.savePaletteDialogConsole}>
+                        <DialogContentText className={classes.savePaletteDialogText}>
+                            To save your new color palette, please enter a name below.
+                        </DialogContentText>
+                        
+                            <div className={classes.txtValidatorFrameRow2}>
+                            <TextValidator
+                                label='PALETTE NAME'
+                                name='newPaletteName' 
+                                value={newPaletteName} 
+                                fullWidth
+                                margin='normal'
+                                validators={[
+                                'required',
+                                'isPaletteNameUnique']}
+                                errorMessages={[
+                                'Enter a palette name...',
+                                'Palette name not unique...try again.']}
+                                onChange={this.handleChange}
+                                // className={classes.savePaletteDialogPaletteNameInput}
+                            />
+                            {/* <Button 
+                                variant="contained" 
+                                color="secondary" 
+                                size='small' 
+                                type='submit'>
+                                SAVE PALETTE
+                            </Button> */}
+                            </div>
+
+                        {/* <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Email Address"
+                            type="email"
+                            fullWidth
+                        /> */}
+                    </DialogContent>
+                    <DialogActions className={classes.savePaletteDialogConsoleFooter}>
+                        <Button onClick={this.handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        {/* <Button onClick={this.handleClose} color="primary">
+                            Subscribe
+                        </Button> */}
                         <Button 
                             variant="contained" 
                             color="secondary" 
@@ -172,26 +200,9 @@ class PaletteFormPaletteNameDialog extends Component {
                             type='submit'>
                             SAVE PALETTE
                         </Button>
-                        </div>
-                    </ValidatorForm>
-                    {/* <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                    /> */}
-                </DialogContent>
-                <DialogActions className={classes.savePaletteDialogConsoleFooter}>
-                    <Button onClick={this.handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    {/* <Button onClick={this.handleClose} color="primary">
-                        Subscribe
-                    </Button> */}
-                </DialogActions>
-            </Dialog>
+                    </DialogActions>
+                </Dialog>
+            </ValidatorForm>
         </div>
     )
   }
