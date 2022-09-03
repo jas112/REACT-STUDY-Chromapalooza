@@ -57,7 +57,7 @@ const styles = theme => ({
         width: '100%',
         height: '100px',
         display: 'flex',
-        flexFlow: 'row wrap',
+        flexFlow: 'row nowrap',
         justifyContent: 'flex-end',
         alignItems: 'center',
         alignSelf: 'flex-end',

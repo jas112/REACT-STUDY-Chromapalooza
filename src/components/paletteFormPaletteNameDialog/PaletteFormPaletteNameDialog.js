@@ -42,28 +42,28 @@ const styles = theme => ({
         color: '#daa520',
     },
 
-    txtValidatorFrameRow: {
-        height: '100px',
-        display: 'flex',
-        flexFlow: 'row nowrap',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        alignSelf: 'flex-end !important',
-        flexGrow: '1',
-    },
+    // txtValidatorFrameRow: {
+    //     height: '100px',
+    //     display: 'flex',
+    //     flexFlow: 'row nowrap',
+    //     justifyContent: 'flex-end',
+    //     alignItems: 'center',
+    //     alignSelf: 'flex-end !important',
+    //     flexGrow: '1',
+    // },
 
-    savePaletteDialogPaletteNameInput: {
-        '& .MuiInputBase-root': {
-            width: '100% !important',
-        },
-        '& input': {
-            width: '100% !important',
-            margin: '0 auto',
-            borderRadius: '0',
-            backgroundColor: '#333333 !important',
-        },
+    // savePaletteDialogPaletteNameInput: {
+    //     '& .MuiInputBase-root': {
+    //         width: '100% !important',
+    //     },
+    //     '& input': {
+    //         width: '100% !important',
+    //         margin: '0 auto',
+    //         borderRadius: '0',
+    //         backgroundColor: '#333333 !important',
+    //     },
         
-    },
+    // },
 
     txtValidatorFrameRow2: {
         width: '100%',
@@ -157,7 +157,8 @@ class PaletteFormPaletteNameDialog extends Component {
                                 label='PALETTE NAME'
                                 name='newPaletteName' 
                                 value={newPaletteName} 
-                                fullWidth
+                                onChange={this.handleChange}
+                                fullWidth='true'
                                 margin='normal'
                                 validators={[
                                 'required',
@@ -165,7 +166,7 @@ class PaletteFormPaletteNameDialog extends Component {
                                 errorMessages={[
                                 'Enter a palette name...',
                                 'Palette name not unique...try again.']}
-                                onChange={this.handleChange}
+                                style={{width: '100% !important'}}
                                 // className={classes.savePaletteDialogPaletteNameInput}
                             />
                             {/* <Button 
