@@ -73,7 +73,7 @@ const styles = theme => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '0 0px',
-        // border: '1px solid white',
+        border: '1px solid white',
         // '& .MuiInputBase-root': {
         //     width: '553px !important',
         //     maxWidth: '100% !important',
@@ -81,21 +81,21 @@ const styles = theme => ({
         //     borderRadius: '0',
         //     backgroundColor: '#333333 !important',
         // },
-        '& button': {
-            height: '44px',
-            // width: '150px',
-            width: '100% !important',
-            borderRadius: '0',
-            fontSize: '1.2rem',
-            margin: '5px auto',
-            color: '#daa520',
-            backgroundColor: 'transparent',
-            border: '2px solid #daa520',
-            '&:hover': {
-                color: '#333333',
-                backgroundColor: '#daa520',
-            }
-        }
+        // '& button': {
+        //     height: '44px',
+        //     // width: '150px',
+        //     width: '100% !important',
+        //     borderRadius: '0',
+        //     fontSize: '1.2rem',
+        //     margin: '5px auto',
+        //     color: '#daa520',
+        //     backgroundColor: 'transparent',
+        //     border: '2px solid #daa520',
+        //     '&:hover': {
+        //         color: '#333333',
+        //         backgroundColor: '#daa520',
+        //     }
+        // }
     },
     
 });
@@ -140,19 +140,19 @@ class PaletteFormPaletteNameDialog extends Component {
     return (
         <div className={classes.savePaletteDialog}>
             <Button onClick={this.handleClickOpen}>SAVE PALETTE</Button>
-            <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
                 <Dialog
                     open={open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogTitle id="form-dialog-title" className={classes.savePaletteDialogTitle}>Save Palette</DialogTitle>
+                    <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
                     <DialogContent className={classes.savePaletteDialogConsole}>
                         <DialogContentText className={classes.savePaletteDialogText}>
                             To save your new color palette, please enter a name below.
                         </DialogContentText>
                         
-                            <div className={classes.txtValidatorFrameRow2}>
+                            {/* <div className={classes.txtValidatorFrameRow2}> */}
                             <TextValidator
                                 label='PALETTE NAME'
                                 name='newPaletteName' 
@@ -175,7 +175,7 @@ class PaletteFormPaletteNameDialog extends Component {
                                 type='submit'>
                                 SAVE PALETTE
                             </Button> */}
-                            </div>
+                            {/* </div> */}
 
                         {/* <TextField
                             autoFocus
@@ -201,8 +201,8 @@ class PaletteFormPaletteNameDialog extends Component {
                             SAVE PALETTE
                         </Button>
                     </DialogActions>
+                    </ValidatorForm>
                 </Dialog>
-            </ValidatorForm>
         </div>
     )
   }

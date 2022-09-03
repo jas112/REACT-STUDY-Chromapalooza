@@ -89,11 +89,11 @@ colorPickerConsole: {
     justifyContent: 'space-around',
     alignItems: 'center',
     // border: '1px solid green',
-    '& .colorPickerConsoleBtn': {
-        width: '225px',
-        maxWidth: '100%',
-        margin: '0 auto',
-    },
+    // '& .colorPickerConsoleBtn': {
+    //     width: '225px',
+    //     maxWidth: '100%',
+    //     margin: '0 auto',
+    // },
     '& .chrome-picker': {
         background: '#00000060 !important',
     },
@@ -307,18 +307,19 @@ class PaletteForm extends React.Component {
   }
 
   render() {
-    const { classes, theme, availablePalettes, routeProps } = this.props;
+    const { classes, theme, availablePalettes, routeProps, ...other } = this.props;
     const { open, hasMaxColorCount, colors } = this.state;
     
     return (
       <div className={classes.root}>
         <PaletteFormNav 
           {...routeProps} 
-          classes={classes} 
+          // classes={classes} 
           open={open} 
           availablePalettes={availablePalettes} 
           handleSubmit={this.handleFinalPaletteSubmit} 
           handleDrawerOpen={this.handleDrawerOpen}
+          {...other}
         />
         <Drawer
           className={classes.drawer}
@@ -354,10 +355,11 @@ class PaletteForm extends React.Component {
               <div className={classes.verticalSpacer20}></div>
 
               <PaletteFormColorPicker 
-                classes={classes}
+                // classes={classes}
                 colors={colors}
                 hasMaxColorCount={hasMaxColorCount}
                 addColor={this.addColor}
+                {...other}
               />
 
             </div>
