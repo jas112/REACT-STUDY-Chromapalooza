@@ -8,6 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import {Picker} from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 
 const styles = theme => ({
 
@@ -65,6 +67,25 @@ const styles = theme => ({
         
     // },
 
+    savePaletteDialogPaletteNameInput: {
+        '& button': {
+            height: '44px',
+            // width: '150px',
+            width: '100% !important',
+            borderRadius: '0',
+            fontSize: '1.2rem',
+            margin: '5px auto',
+            color: '#daa520',
+            backgroundColor: 'transparent',
+            border: '2px solid #daa520',
+            '&:hover': {
+                color: '#333333',
+                backgroundColor: '#daa520',
+            }
+        }
+        
+    },
+
     txtValidatorFrameRow2: {
         width: '100%',
         height: '100px',
@@ -98,6 +119,15 @@ const styles = theme => ({
         // }
     },
     
+    savePaletteBtn:{
+        color: '#daa520',
+        backgroundColor: '#333333 !important',
+        '& :hover': {
+            // border: '1px solid #ffffff',
+            color: '#da6e20 !important',
+        },
+    }
+
 });
 
 class PaletteFormPaletteNameDialog extends Component {
@@ -151,6 +181,8 @@ class PaletteFormPaletteNameDialog extends Component {
                         <DialogContentText className={classes.savePaletteDialogText}>
                             To save your new color palette, please enter a name below.
                         </DialogContentText>
+
+                            <Picker/>
                         
                             {/* <div className={classes.txtValidatorFrameRow2}> */}
                             <TextValidator
@@ -158,7 +190,7 @@ class PaletteFormPaletteNameDialog extends Component {
                                 name='newPaletteName' 
                                 value={newPaletteName} 
                                 onChange={this.handleChange}
-                                fullWidth='true'
+                                fullWidth
                                 margin='normal'
                                 validators={[
                                 'required',
@@ -166,8 +198,8 @@ class PaletteFormPaletteNameDialog extends Component {
                                 errorMessages={[
                                 'Enter a palette name...',
                                 'Palette name not unique...try again.']}
-                                style={{width: '100% !important'}}
-                                // className={classes.savePaletteDialogPaletteNameInput}
+                                // style={{width: '100% !important'}}
+                                className={classes.savePaletteDialogPaletteNameInput}
                             />
                             {/* <Button 
                                 variant="contained" 
@@ -196,7 +228,9 @@ class PaletteFormPaletteNameDialog extends Component {
                         </Button> */}
                         <Button 
                             variant="contained" 
-                            color="secondary" 
+                            // color="secondary"
+                            // style={{color: '#dda520',backgroundColor:'#333333'}} 
+                            className={classes.savePaletteBtn}
                             size='small' 
                             type='submit'>
                             SAVE PALETTE

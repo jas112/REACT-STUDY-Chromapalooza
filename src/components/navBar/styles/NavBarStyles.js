@@ -73,7 +73,7 @@ export default {
         flexGrow: '1',
         '& .MuiInputBase-root': {
             color:'#ffffff',
-            width:'250px',
+            width:'250px !important',
         },
         '& .MuiInputBase-root, .MuiList-root': {
             backgroundColor: '#2f2f2f !important',

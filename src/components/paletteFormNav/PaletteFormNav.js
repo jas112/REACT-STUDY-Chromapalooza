@@ -80,6 +80,20 @@ const styles = theme => ({
         //     margin: '0 auto',
         // }
     },
+
+    goBackBtn: {
+        border: 'none',
+        backgroundColor: '#333333',
+        color: '#daa520',
+        margin: '0 10px',
+        height: '36.46px',
+        borderRadius: '4px',
+        padding: '6px 8px',
+        '&:hover': {
+            color: '#da6e20',
+        }
+
+    }
     
 });
 
@@ -162,6 +176,9 @@ class PaletteFormNav extends Component {
                 </div>
               </ValidatorForm> */}
                 <div className={classes.txtValidatorFrameRowInner}>
+                    <NavLink to='/'>
+                        <button className={classes.goBackBtn}>&#9664; GO BACK</button>
+                    </NavLink>
                     <PaletteFormPaletteNameDialog availablePalettes={availablePalettes} handleSubmit={handleSubmit} />
                 </div>
             </div>
