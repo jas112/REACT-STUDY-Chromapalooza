@@ -126,6 +126,43 @@ const styles = theme => ({
             // border: '1px solid #ffffff',
             color: '#da6e20 !important',
         },
+    },
+
+    emojiSelect: {
+        '& MuiPaper-root': {
+            background: 'transparent !important',
+            backgroundColor: 'transparent !important',
+        },
+        '&  div': {
+            backgroundColor: '#333333 !important',
+        },
+        '& section, button': {
+            color: '#daa520',
+            background: '#333333 !important',
+            backgroundColor: '#333333 !important',
+        },
+        '& .emoji-mart-category-label': {
+           '& span': {
+            color: '#daa520',
+            background: '#333333 !important',
+            backgroundColor: '#333333 !important',
+           },
+        },
+        '& .emoji-mart-search': {
+            '& button': {
+                // marginTop: '9px',
+                // marginBottom: '18px',
+                color: '#daa520',
+                background: 'transparent !important',
+                backgroundColor: 'transparent !important',
+            }
+        },
+        '& .emoji-mart-scroll': {
+            width: '95%',
+            marginTop: '9px',
+            background: 'transparent !important',
+            backgroundColor: 'transparent !important',
+        }
     }
 
 });
@@ -134,12 +171,16 @@ class PaletteFormPaletteNameDialog extends Component {
     constructor(props){
         super(props);
         this.state = {
+            paletteSaveStage: 'none',
             open: false,
             newPaletteName: '',
+            // newPaletteEmoji: null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.togglePaletteSaveStage = this.togglePaletteSaveStage.bind(this);
+        this.submitPaletteMetaData = this.submitPaletteMetaData.bind(this);
     }
 
     componentDidMount(){
@@ -153,9 +194,22 @@ class PaletteFormPaletteNameDialog extends Component {
     handleClickOpen() {
         this.setState({ open: true });
     };
+
+    submitPaletteMetaData(emoji){
+        console.log(emoji);
+
+        let paletteMetaData = {
+            paletteName: this.state.newPaletteName,
+            paletteEmoji: emoji.native
+        };
+        // let currNewPaletteName = this.state.newPaletteName;
+        // let currNewPaletteEmoji = emoji.native;
+        this.props.handleSubmit(paletteMetaData);
+    }
     
     handleClose() {
-        this.setState({ open: false });
+        // this.setState({ open: false });
+        this.setState({paletteSaveStage: 'none'});
     };
 
     handleChange(evt){
@@ -164,25 +218,35 @@ class PaletteFormPaletteNameDialog extends Component {
         });
     }
 
+    togglePaletteSaveStage(){
+
+        let currSaveState = this.state.paletteSaveStage;
+
+        if(currSaveState === 'none'){
+            this.setState({paletteSaveStage: 'paletteName'});
+        }
+        if(currSaveState === 'paletteName'){
+            this.setState({paletteSaveStage: 'paletteEmoji'});
+        }
+    }
+
   render() {
     const {classes} = this.props;
     const {open, newPaletteName} = this.state;
     return (
         <div className={classes.savePaletteDialog}>
-            <Button onClick={this.handleClickOpen}>SAVE PALETTE</Button>
+            <Button onClick={this.togglePaletteSaveStage}>SAVE PALETTE</Button>
                 <Dialog
-                    open={open}
+                    open={this.state.paletteSaveStage === 'paletteName'}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogTitle id="form-dialog-title" className={classes.savePaletteDialogTitle}>Save Palette</DialogTitle>
-                    <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
+                    <ValidatorForm onSubmit={this.togglePaletteSaveStage}>
                     <DialogContent className={classes.savePaletteDialogConsole}>
                         <DialogContentText className={classes.savePaletteDialogText}>
                             To save your new color palette, please enter a name below.
                         </DialogContentText>
-
-                            <Picker/>
                         
                             {/* <div className={classes.txtValidatorFrameRow2}> */}
                             <TextValidator
@@ -237,6 +301,21 @@ class PaletteFormPaletteNameDialog extends Component {
                         </Button>
                     </DialogActions>
                     </ValidatorForm>
+                </Dialog>
+                <Dialog 
+                    open={this.state.paletteSaveStage === 'paletteEmoji'}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <div className={classes.emojiSelect}>
+                        <Picker 
+                            onSelect={this.submitPaletteMetaData}
+                            title='Set palette emoji…' 
+                            emoji='point_up'
+                            style={{ color: 'daa520', backgroundColor: '#33333399'}}
+                        />
+                    </div>
+                    
                 </Dialog>
         </div>
     )

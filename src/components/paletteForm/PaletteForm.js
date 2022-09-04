@@ -257,12 +257,12 @@ class PaletteForm extends React.Component {
   }
 
 
-  handleFinalPaletteSubmit(paletteName){
-
+  handleFinalPaletteSubmit(newPaletteMetaData){
+    console.log(newPaletteMetaData);
     let newPalette = {
-      paletteName: paletteName,
-      id: paletteName.toLowerCase().replace(/ /g,'-'),
-      emoji: '',
+      paletteName: newPaletteMetaData.paletteName,
+      id: newPaletteMetaData.paletteName.toLowerCase().replace(/ /g,'-'),
+      emoji: newPaletteMetaData.paletteEmoji,
       colors: this.state.colors
     };
     this.props.savePalette(newPalette);
