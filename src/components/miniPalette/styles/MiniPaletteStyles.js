@@ -87,7 +87,7 @@ export default {
     },
 
     miniPaletteName: {
-        fontSize: '1.1rem',
+        fontSize: '.9rem',
         '& h4': {
             color: 'red',
             fontSize: '10px'

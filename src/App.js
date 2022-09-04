@@ -18,7 +18,15 @@ class App extends Component {
     this.state = {
       availablePalettes: storedPalettes || seedPalettes,
     }
+    this.retreivePalette = this.retreivePalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
+    this.deletePalette = this.deletePalette.bind(this);
+  }
+
+  retreivePalette(id){
+    return this.state.palettes.find(function(palette){
+      return palette.id === id;
+    })
   }
 
   savePalette(newPalette){
@@ -26,6 +34,14 @@ class App extends Component {
       this.setState({availablePalettes: [...this.state.availablePalettes, newPalette]},
         this.syncLocalStorage
       );
+  }
+
+  deletePalette(id){
+    console.log(`@App.js deletePalette: target Palette => ${id}`);
+    let remainingPalettes = this.state.availablePalettes.filter(palette => palette.id !== id);
+    this.setState({availablePalettes: remainingPalettes},
+      this.syncLocalStorage
+    );
   }
 
   syncLocalStorage(){
@@ -53,7 +69,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path='/' render={(routeProps) => <PaletteList palettes={availablePalettes} {...routeProps} />} />
+          <Route exact path='/' render={(routeProps) => <PaletteList palettes={availablePalettes} {...routeProps} deletePalette={this.deletePalette}/>} />
           {/* <Route exact path='/palette/:id' render={routeProps => (<Palette {...routeProps} />)}/> */}
           <Route exact path='/palette/new' render={routeProps => (<PaletteForm {...routeProps} availablePalettes={availablePalettes} savePalette={this.savePalette} />)}/>
           <Route exact path='/palette/:id' render={routeProps => (<Palette palette={ generateScaledPaletteById(routeProps.match.params.id, availablePalettes)} />)}/>

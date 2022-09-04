@@ -11,7 +11,13 @@ class PaletteList extends Component {
 
         let currentPalettes = rootPalettes.map(palette => (
 
-            <MiniPalette {...palette} key={palette.id} handleClick={() => this.navigateToPaletteById(palette.id)} />
+            <MiniPalette 
+                {...palette} 
+                key={palette.id} 
+                handleClick={() => this.navigateToPaletteById(palette.id)}
+                id={palette.id}
+                deletePalette={this.props.deletePalette} 
+            />
             // <NavLink style={{color: 'goldenrod'}} to={`/palette/${palette.id}`}>{palette.paletteName}</NavLink>
         ));
 
@@ -24,7 +30,7 @@ class PaletteList extends Component {
   render() {
     const {classes} = this.props;
     const palettes = this.generatePalettes();
-    console.log(`palettes: ${this.props.palettes}`);
+    // console.log(`palettes: ${this.props.palettes}`);
     return (
         <div className={classes.paletteList}>
             <div className={classes.paletteListConsole}>
