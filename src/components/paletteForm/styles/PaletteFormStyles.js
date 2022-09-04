@@ -1,78 +1,142 @@
+const drawerWidth = 240;
 
-export default {
-    paletteFormContainer: {
-        backgroundColor: '#01071198',
-        color: 'white',
-        margin: '0 auto',
-        height: '100vh',
-        width: '100vw',
-        borderSpacing: '0',
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: '#161616',
+    color: '#daa520', 
+    '& ul': {
+      backgroundColor: '#161616 !important',
+    },
+    '& svg': {
+      color: '#daa520',
+    },
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+    height: '100px',
+    minHeight: '100px !important'
+  },
+  content: {
+    height: 'calc(100vh - 64px) !important',
+    backgroundColor: '#0e0e0e !important',
+    borderSpacing: '0 !important',
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
+
+  colorPickerAssembly: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    // border: '1px solid red'
+  },
+
+colorPickerConsole: {
+    width: '100%',
+    // height: '70%',
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    '& .chrome-picker': {
+        background: '#00000060 !important',
+    },
+    '& form': {
         display: 'flex',
         flexFlow: 'column nowrap',
-    },
-
-    paletteFormConsole: {
-        backgroundColor: '#01071198',
-        color: 'white',
-        margin: '0 auto',
-        width: '100vw',
-        borderSpacing: '0',
-        flexGrow: '1',
-        border: '1px solid limegreen',
-    },
-
-    root: {
-        display: 'flex',
-      },
-      appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-      },
-      appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginRight: drawerWidth,
-      },
-      menuButton: {
-        marginLeft: 12,
-        marginRight: 20,
-      },
-      hide: {
-        display: 'none',
-      },
-      drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
-      drawerPaper: {
-        width: drawerWidth,
-      },
-      drawerHeader: {
-        display: 'flex',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        padding: '0 8px',
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-start',
-      },
-      content: {
-        flexGrow: 1,
-        padding: theme.spacing.unit * 3,
-        transition: theme.transitions.create('margin', {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginRight: -drawerWidth,
-      },
-      contentShift: {
-        transition: theme.transitions.create('margin', {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginRight: 0,
-      },
-}
+        '& .MuiInputBase-root': {
+        width: '225px !important',
+        maxWidth: '100%',
+        margin: '0 auto',
+        borderRadius: '0',
+        backgroundColor: '#333333 !important',
+        }
+    },
+},
+
+cpToolBar: {
+  backgroundColor: '#1f1f1f', 
+  width:'100% !important',
+  // border: '1px solid red',
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'flex-start',
+},
+
+colorPickerSubConsole: {
+    width: '225px',
+    maxWidth: '100%',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    margin: '5px auto',
+    '& button': {
+        width: '110px',
+        maxWidth: '100%',
+        borderRadius: '0',
+        fontSize: '.5rem',
+        margin: '0 auto',
+    }
+},
+
+  contentTopSpacer: {
+    width: '100%',
+    height: '0%',
+    // border: '1px solid green',
+  },
+  
+  verticalSpacer5: {
+    width: '100%',
+    height: '5px',
+    backgroundColor: 'transparent',
+  },
+
+  verticalSpacer10: {
+    width: '100%',
+    height: '10px',
+    backgroundColor: 'transparent',
+  },
+
+  verticalSpacer20: {
+    width: '100%',
+    height: '20px',
+    backgroundColor: 'transparent',
+  },
+
+});
+
+export default styles;

@@ -10,162 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {Picker} from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
-
-const styles = theme => ({
-
-    savePaletteDialog: {
-        '& button': {
-            color: '#daa520',
-            backgroundColor: '#333333 !important',
-            '& :hover': {
-                // border: '1px solid #ffffff',
-                color: '#da6e20 !important',
-            },
-        },
-        // '& .MuiPaper-root': {
-        //     backgroundColor: '#1f1f1f !important',
-        // },
-    },
-
-    savePaletteDialogConsole: {
-        backgroundColor: '#1f1f1f !important',
-    },
-
-    savePaletteDialogConsoleFooter: {
-        backgroundColor: '#1f1f1f !important',
-    },
-
-    savePaletteDialogTitle:{
-        color: '#daa520',
-        backgroundColor: '#1f1f1f !important',
-    },
-
-    savePaletteDialogText:{
-        color: '#daa520',
-    },
-
-    // txtValidatorFrameRow: {
-    //     height: '100px',
-    //     display: 'flex',
-    //     flexFlow: 'row nowrap',
-    //     justifyContent: 'flex-end',
-    //     alignItems: 'center',
-    //     alignSelf: 'flex-end !important',
-    //     flexGrow: '1',
-    // },
-
-    // savePaletteDialogPaletteNameInput: {
-    //     '& .MuiInputBase-root': {
-    //         width: '100% !important',
-    //     },
-    //     '& input': {
-    //         width: '100% !important',
-    //         margin: '0 auto',
-    //         borderRadius: '0',
-    //         backgroundColor: '#333333 !important',
-    //     },
-        
-    // },
-
-    savePaletteDialogPaletteNameInput: {
-        '& button': {
-            height: '44px',
-            // width: '150px',
-            width: '100% !important',
-            borderRadius: '0',
-            fontSize: '1.2rem',
-            margin: '5px auto',
-            color: '#daa520',
-            backgroundColor: 'transparent',
-            border: '2px solid #daa520',
-            '&:hover': {
-                color: '#333333',
-                backgroundColor: '#daa520',
-            }
-        }
-        
-    },
-
-    txtValidatorFrameRow2: {
-        width: '100%',
-        height: '100px',
-        display: 'flex',
-        flexFlow: 'row wrap',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '0 0px',
-        border: '1px solid white',
-        // '& .MuiInputBase-root': {
-        //     width: '553px !important',
-        //     maxWidth: '100% !important',
-        //     margin: '0 auto',
-        //     borderRadius: '0',
-        //     backgroundColor: '#333333 !important',
-        // },
-        // '& button': {
-        //     height: '44px',
-        //     // width: '150px',
-        //     width: '100% !important',
-        //     borderRadius: '0',
-        //     fontSize: '1.2rem',
-        //     margin: '5px auto',
-        //     color: '#daa520',
-        //     backgroundColor: 'transparent',
-        //     border: '2px solid #daa520',
-        //     '&:hover': {
-        //         color: '#333333',
-        //         backgroundColor: '#daa520',
-        //     }
-        // }
-    },
-    
-    savePaletteBtn:{
-        color: '#daa520',
-        backgroundColor: '#333333 !important',
-        '& :hover': {
-            // border: '1px solid #ffffff',
-            color: '#da6e20 !important',
-        },
-    },
-
-    emojiSelect: {
-        '& MuiPaper-root': {
-            background: 'transparent !important',
-            backgroundColor: 'transparent !important',
-        },
-        '&  div': {
-            backgroundColor: '#333333 !important',
-        },
-        '& section, button': {
-            color: '#daa520',
-            background: '#333333 !important',
-            backgroundColor: '#333333 !important',
-        },
-        '& .emoji-mart-category-label': {
-           '& span': {
-            color: '#daa520',
-            background: '#333333 !important',
-            backgroundColor: '#333333 !important',
-           },
-        },
-        '& .emoji-mart-search': {
-            '& button': {
-                // marginTop: '9px',
-                // marginBottom: '18px',
-                color: '#daa520',
-                background: 'transparent !important',
-                backgroundColor: 'transparent !important',
-            }
-        },
-        '& .emoji-mart-scroll': {
-            width: '95%',
-            marginTop: '9px',
-            background: 'transparent !important',
-            backgroundColor: 'transparent !important',
-        }
-    }
-
-});
+import styles from './styles/PaletteFormPaletteNameDialogStyles';
 
 class PaletteFormPaletteNameDialog extends Component {
     constructor(props){
@@ -174,7 +19,6 @@ class PaletteFormPaletteNameDialog extends Component {
             paletteSaveStage: 'none',
             open: false,
             newPaletteName: '',
-            // newPaletteEmoji: null,
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -202,13 +46,11 @@ class PaletteFormPaletteNameDialog extends Component {
             paletteName: this.state.newPaletteName,
             paletteEmoji: emoji.native
         };
-        // let currNewPaletteName = this.state.newPaletteName;
-        // let currNewPaletteEmoji = emoji.native;
+
         this.props.handleSubmit(paletteMetaData);
     }
     
     handleClose() {
-        // this.setState({ open: false });
         this.setState({paletteSaveStage: 'none'});
     };
 
@@ -248,7 +90,6 @@ class PaletteFormPaletteNameDialog extends Component {
                             To save your new color palette, please enter a name below.
                         </DialogContentText>
                         
-                            {/* <div className={classes.txtValidatorFrameRow2}> */}
                             <TextValidator
                                 label='PALETTE NAME'
                                 name='newPaletteName' 
@@ -262,38 +103,17 @@ class PaletteFormPaletteNameDialog extends Component {
                                 errorMessages={[
                                 'Enter a palette name...',
                                 'Palette name not unique...try again.']}
-                                // style={{width: '100% !important'}}
                                 className={classes.savePaletteDialogPaletteNameInput}
                             />
-                            {/* <Button 
-                                variant="contained" 
-                                color="secondary" 
-                                size='small' 
-                                type='submit'>
-                                SAVE PALETTE
-                            </Button> */}
-                            {/* </div> */}
 
-                        {/* <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                        /> */}
                     </DialogContent>
                     <DialogActions className={classes.savePaletteDialogConsoleFooter}>
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
                         </Button>
-                        {/* <Button onClick={this.handleClose} color="primary">
-                            Subscribe
-                        </Button> */}
+
                         <Button 
                             variant="contained" 
-                            // color="secondary"
-                            // style={{color: '#dda520',backgroundColor:'#333333'}} 
                             className={classes.savePaletteBtn}
                             size='small' 
                             type='submit'>
