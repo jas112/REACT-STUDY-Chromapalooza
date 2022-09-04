@@ -13,7 +13,7 @@ class NavBar extends Component {
   generateNavBarSlider(){
     return (
       <div className={this.props.classes.navBarSliderConsole}>
-          <div className={this.props.classes.navBarSliderReadout}>Level: {this.props.level}</div>
+          <div className={this.props.classes.navBarSliderReadout}>Lvl: {this.props.level}</div>
           <div className={this.props.classes.navBarSliderBox}>
               <Slider defaultValue={this.props.level} min={100} max={900} step={100} onAfterChange={this.props.changeLevelValue}/>
           </div>
@@ -58,7 +58,7 @@ class NavBar extends Component {
     
     return (
       <header className={this.props.classes.navBar}>
-        <div className='NavBar-branding-box'>
+        <div className={this.props.classes.navBarBrandingBox}>
             <NavLink className='NavBar-branding' to='/'>
                 chromapalooza
             </NavLink>

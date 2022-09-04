@@ -1,3 +1,5 @@
+import sizes from '../../../resources/mediaQueryStylesHelper';
+
 export default {
     footer: {
         width:'100%',
@@ -9,6 +11,9 @@ export default {
         backgroundColor: '#1f1f1f',
         padding: '0',
         borderSpacing: '0',
+        [sizes.down('xs')]: {
+            display: 'none',
+        },
     },
     
     footerPaletteName: {

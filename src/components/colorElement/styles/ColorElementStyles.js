@@ -1,3 +1,5 @@
+import sizes from '../../../resources/mediaQueryStylesHelper';
+
 const styles = {
 
     colorElementOuterFrame: {
@@ -14,7 +16,31 @@ const styles = {
         cursor: 'pointer',
         '&:hover': {
             border: '2px solid goldenrod',
-        }
+        },
+        // [sizes.down('md')]: {
+        //     width: '25%',
+        //     height: props => props.isFullPalette ? '20%' : '33.3333%',
+        // },
+        // [sizes.down('md')]: {
+        //     width: '50%',
+        //     height: props => props.isFullPalette ? '10%' : '20%',
+        // },
+        // [sizes.down('xs')]: {
+        //     width: '100%',
+        //     height: props => props.isFullPalette ? '5%' : '10%',
+        // },
+        [sizes.down('lg')]: {
+            width: '25%',
+            height: '20%',
+          },
+          [sizes.down('md')]: {
+              width: '50%',
+              height: '10%',
+          },
+          [sizes.down('xs')]: {
+              width: '100%',
+              height: '5%',
+          },
     },
 
     colorElementInnerFrame: {

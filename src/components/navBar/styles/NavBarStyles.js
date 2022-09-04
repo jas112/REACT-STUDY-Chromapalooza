@@ -1,13 +1,20 @@
+import sizes from '../../../resources/mediaQueryStylesHelper';
+
 export default {
     navBar: {
         width: '100%',
         height: '5vh',
         display: 'flex',
-        flexFlow: 'row wrap',
+        flexFlow: 'row nowrap',
         justifyContent: 'flex-start',
         alignItems: 'center',
         color: '#daa520',
         backgroundColor: '#1f1f1f',
+        [sizes.down('xs')]: {
+            height: '10vh',
+            flexFlow: 'column nowrap',
+            justifyContent: 'center',
+        },
     },
 
     navBarBrandingBox: {
@@ -19,6 +26,9 @@ export default {
         fontSize: '25px',
         fontFamily: 'Roboto',
         margin: '0 10px',
+        [sizes.down('md')]: {
+            display: 'none !important',
+        },
     },
     
     navBarBranding: {
@@ -31,16 +41,27 @@ export default {
     },
 
     navBarSliderConsole: {
-        display: 'inline-block',
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        [sizes.down('xs')]: {
+            justifyContent: 'center',
+            width: '100%',
+            padding: '15px 0',
+        },
     },
     
     navBarSliderReadout: {
         display: 'inline-block',
+        [sizes.down('xs')]: {
+            fontSize: '.8rem',
+            display: 'none',
+        },
     },
     
     navBarSliderBox: {
-        width:'340px',
-        minWidth: '200px',
+        width:'500px',
         margin:'0 15px',
         display: 'inline-block',
         '& .rc-slider-track': {
@@ -63,6 +84,17 @@ export default {
             position:'relative',
             bottom: '4px',
         },
+        [sizes.down('lg')]: {
+            width: '500px !important',
+        },
+        [sizes.down('md')]: {
+            width: '240px !important',
+        },
+        [sizes.down('xs')]: {
+            display: 'block',
+            width: '90% !important',
+        },
+        
     },
 
     navBarSelect: {
@@ -74,6 +106,9 @@ export default {
         '& .MuiInputBase-root': {
             color:'#ffffff',
             width:'250px !important',
+            [sizes.down('xs')]: {
+                width: '90% !important',
+            },
         },
         '& .MuiInputBase-root, .MuiList-root': {
             backgroundColor: '#2f2f2f !important',
@@ -85,6 +120,12 @@ export default {
         },
         '& .MuiMenuItem-root': {
             color:'#ffa500 !important',
+        },
+
+        [sizes.down('xs')]: {
+            width: '100%',
+            justifyContent: 'center',
+            padding: '10px 10px 15px',
         },
     },
     

@@ -8,7 +8,7 @@
     background-color: #1f1f1f;
 } */
 
-.NavBar-branding-box{
+/* .NavBar-branding-box{
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -17,7 +17,7 @@
     font-size: 25px;
     font-family: Roboto;
     margin: 0 10px;
-}
+} */
 
 .NavBar-branding{
     background: linear-gradient(to right,

@@ -1,4 +1,5 @@
 import {DRAWER_WIDTH} from '../../../resources/appConstants';
+import sizes from '../../../resources/mediaQueryStylesHelper';
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -54,6 +55,18 @@ const styles = theme => ({
         alignSelf: 'flex-end',
         flexGrow: '1',
         padding: '0 20px',
+        [sizes.down('lg')]: {
+
+        },
+        [sizes.down('md')]: {
+
+        },
+        [sizes.down('xs')]: {
+            justifyContent: 'center',
+            alignSelf: 'center',
+            fontSize: '.9rem',
+            padding: '0 5px',
+        },
     },
 
     goBackBtn: {
@@ -66,7 +79,10 @@ const styles = theme => ({
         padding: '6px 8px',
         '&:hover': {
             color: '#da6e20',
-        }
+        },
+        [sizes.down('xs')]: {
+            fontSize: '.6rem !important',
+        },
 
     }
     

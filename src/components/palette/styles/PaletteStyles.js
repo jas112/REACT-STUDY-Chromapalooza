@@ -1,7 +1,9 @@
+import sizes from '../../../resources/mediaQueryStylesHelper';
+
 export default {
     palette: {
         height: '100vh',
-        width: '100vw',
+        width: '100%',
         borderSpacing: '0',
         display: 'flex',
         flexFlow: 'column nowrap',
@@ -12,6 +14,7 @@ export default {
         margin:'0 10px',
         display: 'inline-block',
         height: '5vh',
+        border: '1px solid red',
     },
   
     paletteColors: {
@@ -19,5 +22,9 @@ export default {
         width: '100vw',
         backgroundColor: '#000000',
         overflow: 'hidden',
+        [sizes.down('xs')]: {
+            height: '85vh',
+            overflow: 'visible',
+        },
     }
 }

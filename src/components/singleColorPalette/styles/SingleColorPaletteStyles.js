@@ -1,3 +1,5 @@
+import sizes from '../../../resources/mediaQueryStylesHelper';
+
 export default {
     singleColorPalette: {
         height: '100vh',
@@ -33,6 +35,18 @@ export default {
             opacity: '1',
             transition: '.5s'
         },
+        [sizes.down('lg')]: {
+          width: '25%',
+          height: '33.3333%',
+        },
+        [sizes.down('md')]: {
+            width: '50%',
+            height: '20%',
+        },
+        [sizes.down('xs')]: {
+            width: '100%',
+            height: '10%',
+        },
       },
     
       singleColorPaletteGoBack: {
@@ -56,6 +70,18 @@ export default {
         flexFlow: 'column nowrap',
         justifyContent:'center',
         alignItems: 'center',
+        [sizes.down('lg')]: {
+          width: '25%',
+          height: '33.3333%',
+        },
+        [sizes.down('md')]: {
+            width: '50%',
+            height: '20%',
+        },
+        [sizes.down('xs')]: {
+            width: '100%',
+            height: '10%',
+        },
       },
     
       goBackBtn: {
@@ -78,7 +104,7 @@ export default {
         opacity: '.3',
         '&:visited': {
           color: '#ffffff',
-        }
+        },
       } ,
     
 }

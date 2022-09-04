@@ -16,11 +16,11 @@ const styles = {
         },
         [sizes.down('md')]: {
             width: '25%',
-            height: props => props.isFullPalette ? '20%' : '50%',
+            height: props => props.isFullPalette ? '20%' : '33.3333%',
         },
         [sizes.down('md')]: {
             width: '50%',
-            height: props => props.isFullPalette ? '10%' : '50%',
+            height: props => props.isFullPalette ? '10%' : '20%',
         },
         [sizes.down('xs')]: {
             width: '100%',
@@ -120,6 +120,9 @@ const styles = {
             textTransform: 'uppercase',
             backgroundImage: 'linear-gradient(to right,#ffffff00,#ffffff00,#ffffff30,#ffffff50,#ffffff30,#ffffff00,#ffffff00)',
             padding: '1rem',
+            [sizes.down('xs')]: {
+                fontSize: '5rem'
+            },
         },
     },
 
