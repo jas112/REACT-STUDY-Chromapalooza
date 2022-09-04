@@ -1,3 +1,5 @@
+import sizes from '../../../resources/mediaQueryStylesHelper';
+
 export default {
     paletteList: {
         width:'100%',
@@ -14,6 +16,12 @@ export default {
         flexFlow: 'column nowrap',
         justifyContent: 'center',
         alignItems: 'center',
+        [sizes.down('md')]: {
+            width: '70% !important',
+        },
+        [sizes.down('xs')]: {
+            width: '70% !important',
+        },
     },
     
     paletteListHeader: {
@@ -29,6 +37,9 @@ export default {
     paletteListHeaderOperationLink: {
         textDecoration: 'none',
         color: '#ffa500',
+        [sizes.down('xs')]: {
+            fontSize: '.8rem',
+        },
     },
     
     paletteListMainTitleBox: {
@@ -58,6 +69,12 @@ export default {
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '5%'
+        gridGap: '1.5rem',
+        [sizes.down('sm')]: {
+            gridTemplateColumns: 'repeat(2, 50%)',
+        },
+        [sizes.down('xs')]: {
+            gridTemplateColumns: 'repeat(1, 100%)',
+        },
     }
 }
