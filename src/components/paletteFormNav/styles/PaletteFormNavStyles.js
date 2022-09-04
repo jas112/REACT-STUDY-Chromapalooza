@@ -1,4 +1,6 @@
-const drawerWidth = 240;
+import {DRAWER_WIDTH} from '../../../resources/appConstants';
+
+const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
     hide: {

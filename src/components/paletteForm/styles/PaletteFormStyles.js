@@ -1,4 +1,6 @@
-const drawerWidth = 240;
+import {DRAWER_WIDTH} from '../../../resources/appConstants';
+
+const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
   root: {
@@ -28,6 +30,7 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    width: '100%',
     height: '100px',
     minHeight: '100px !important'
   },
@@ -36,7 +39,7 @@ const styles = theme => ({
     backgroundColor: '#0e0e0e !important',
     borderSpacing: '0 !important',
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

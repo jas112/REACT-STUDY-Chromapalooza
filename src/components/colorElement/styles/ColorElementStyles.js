@@ -2,7 +2,7 @@ const styles = {
 
     colorElementOuterFrame: {
         width: '20%',
-        height: '25%',
+        height: '24%',
         border: '0px solid transparent',
         postion: 'relative',
         margin: '0',

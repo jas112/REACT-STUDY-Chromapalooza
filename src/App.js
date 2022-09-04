@@ -12,15 +12,27 @@ import { generateScaledPaletteById, generateSingleColorPalette } from './resourc
 class App extends Component {
   constructor(props){
     super(props);
+
+    const storedPalettes = JSON.parse(window.localStorage.getItem('storedPalettes'));
+
     this.state = {
-      availablePalettes: [...seedPalettes],
+      availablePalettes: storedPalettes || seedPalettes,
     }
     this.savePalette = this.savePalette.bind(this);
   }
 
   savePalette(newPalette){
       console.log(`newPalette: ${JSON.stringify(newPalette)}`);
-      this.setState({availablePalettes: [...this.state.availablePalettes, newPalette]})
+      this.setState({availablePalettes: [...this.state.availablePalettes, newPalette]},
+        this.syncLocalStorage
+      );
+  }
+
+  syncLocalStorage(){
+    window.localStorage.setItem(
+      'storedPalettes', 
+      JSON.stringify(this.state.availablePalettes)
+    );
   }
 
   render(){
