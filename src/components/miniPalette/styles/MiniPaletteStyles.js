@@ -4,11 +4,11 @@ export default {
         // border: '1px solid white',
         width: '100%',
         height: '200px',
-        display: 'flex',
-        flexFlow: 'column nowrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
+        // display: 'flex',
+        // flexFlow: 'column nowrap',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // backgroundColor: 'transparent',
         margin: '0',
         padding:"0",
     }, 
@@ -43,6 +43,9 @@ export default {
             //     zIndex: '-1',
             //     filter: 'blur(15px)',
             // }
+            '& svg': {
+                opacity: '1',
+            }
         },
         '&:before': {
             content: '""',
@@ -68,11 +71,14 @@ export default {
         height: '170px',
         borderRadius: '5px',
         overflow: 'hidden',
+        position: 'relative',
         backgroundColor: 'transparent'
     },
 
     miniPaletteDetails: {
         width: '100%',
+        position: 'relative',
+        top: '15px',
         textDecoration: 'none',
         display: 'flex',
         flexFlow: 'row nowrap',
@@ -81,7 +87,7 @@ export default {
     },
 
     miniPaletteName: {
-        fontSize: '.85rem',
+        fontSize: '1.1rem',
         '& h4': {
             color: 'red',
             fontSize: '10px'
@@ -89,7 +95,7 @@ export default {
     },
 
     miniPaletteEmoji: {
-        fontSize:'1.2rem'
+        fontSize:'1.3rem'
     },
 
     miniPaletteColorElement: {
@@ -110,6 +116,41 @@ export default {
             zIndex: '-1',
             filter: 'blur(1px)',
         }
-    }
+    },
+
+    delete: {
+        // border: '1px solid white',
+        width: '98.5%',
+        height: '35px',
+        position: 'relative',
+        top: '-87%',
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+
+    deleteIcon: {
+        color: '#ff5100',
+        backgroundColor: '#00000080',
+        borderRadius: '5px',
+        boxShadow: '0px 0px 15px #ff510080',
+        border: '1px solid #ff5100',
+        width: '15px',
+        height: '15px',
+        padding: '6px',
+        zIndex: '999',
+        position: 'relative',
+        right: '-6px',
+        bottom: '1px',
+        opacity: '0',
+        transition: 'all .25s ease-in-out',
+        '&:hover': {
+            color: '#ffffff',
+            backgroundColor: '#00000090',
+            boxShadow: '0px 0px 30px #ff5100',
+            border: '1px solid #ffffff',
+        }
+    },
 
 }

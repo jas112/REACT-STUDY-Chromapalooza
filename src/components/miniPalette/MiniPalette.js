@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 // import './styles/MiniPalette.css';
 import styles from './styles/MiniPaletteStyles';
 
@@ -45,6 +46,9 @@ function MiniPalette(props){
                         <div className={classes.miniPaletteName}>{paletteName}</div>
                         <div className={classes.miniPaletteEmoji}>{emoji}</div>
                         {/* <h4>test of nested styles...</h4> */}
+                    </div>
+                    <div className={classes.delete}>
+                        <DeleteIcon className={classes.deleteIcon} style={{transition: 'all .25s ease-in-out'}} title='Delete Palette'/>
                     </div>
                 </div>
             </div>
