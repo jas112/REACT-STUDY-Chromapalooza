@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
+import classNames from 'classnames';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
 import chroma from 'chroma-js';
-import './styles/ColorBox.css';
 import styles from './styles/ColorBoxStyles';
 
 // const styles = {
@@ -139,22 +139,12 @@ class ColorBox extends Component {
     }
 
     triggerCopyIndicator(){
-        // console.log(``);
         this.setState({isCopying: true},() => {
-            // console.log(`isCopy: ${this.state.isCopying}`);
             setTimeout(() => {
                 this.setState({isCopying: false});
             }, 1500);
         });
     }
-
-    // generateShowMoreLink(linkStyle){
-    //     return (
-    //         <Link to={this.props.colorUrl} onClick={e => e.stopPropagation()}>
-    //             <span className={`see-more ${linkStyle}`}>More</span>
-    //         </Link>
-    //     );
-    // }
 
     generateShowMoreLink(){
         return (
@@ -168,50 +158,22 @@ class ColorBox extends Component {
     
     const {backgroundColor, name , showMore, classes} = this.props;
     const { isCopying } = this.state;
-    // let bgLuminance = chroma(backgroundColor).luminance();
-    // let isDarkBGColor = bgLuminance <= .55;
-    // let isLightBGColor = bgLuminance >= .6;
-    // console.log(`backgroundColor: ${backgroundColor} | bgLuminance: ${bgLuminance} | isDarkBGColor: ${isDarkBGColor} | isLightBGColor: ${isLightBGColor}`);
-
-    // var styleValueColorBoxName;
-    // var styleValueMoreBtn;
-
-    // if(isDarkBGColor){
-    //     styleValueColorBoxName = 'isDarkBG';
-    // }else{
-    //     styleValueColorBoxName = null;
-    // }
-
-    // if(isLightBGColor){
-    //     styleValueMoreBtn = 'isLightBG';
-    // }else{
-    //     styleValueMoreBtn = null;
-    // }
-
-    // let showMoreLink = this.generateShowMoreLink(styleValueMoreBtn);
 
     let showMoreLink = this.generateShowMoreLink();
 
     return (
         <CopyToClipboard text={backgroundColor} onCopy={this.triggerCopyIndicator}>
             <div className={classes.colorBox} style={{backgroundColor: backgroundColor}}>
-                <div  className={`${classes.copyIndicatorOverlay} ${isCopying ? classes.showCopyIndicatorOverlay : null}`} style={{backgroundColor: backgroundColor}} />
-                <div className={`${classes.copyIndicatorMsg} ${isCopying ? classes.showCopyIndicatorMsg : null}`}>
+                <div  className={classNames(classes.copyIndicatorOverlay, {[classes.showCopyIndicatorOverlay]: isCopying})} style={{backgroundColor: backgroundColor}} />
+                <div className={classNames(classes.copyIndicatorMsg, {[classes.showCopyIndicatorMsg]: isCopying})}>
                     <h1>copied!</h1>
-                    {/* <p className={`${styleValueColorBoxName}`}>{this.props.backgroundColor}</p> */}
-                    <p className={classes.copyIndicatorMsgColor}>{this.props.backgroundColor}</p>
+                    <p className={classes.copyIndicatorMsgColor}>{backgroundColor}</p>
                 </div>
                 <div>
-                    {/* <div className={`box-content ${styleValueColorBoxName}`}>
-                        <span>{name}</span>
-                    </div> */}
-                    {/* <button className='copy-element-btn'>Copy</button> */}
-
                     <div className={classes.boxContent}>
                         <span className={classes.colorBoxColorName}>{name}</span>
                     </div>
                     <button className={classes.copyElementBtn}>Copy</button>
-
                 </div>
                 {showMore ? showMoreLink : null}
             </div>

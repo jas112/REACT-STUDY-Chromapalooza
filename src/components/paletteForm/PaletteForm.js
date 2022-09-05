@@ -136,8 +136,6 @@ class PaletteForm extends React.Component {
 
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({colors}) =>({
-      // colors: arrayMove(colors, oldIndex, newIndex),
-      // colors: arrayMoveMutable (colors, oldIndex, newIndex),
       colors: arrayMoveImmutable(colors, oldIndex, newIndex),
     }));
   }
@@ -146,7 +144,6 @@ class PaletteForm extends React.Component {
     let currentPaletteColors = this.state.colors.map((color) => {
       let colorIsDark = chroma(color.color).luminance() <= .6;
       let textColor = colorIsDark ? '#ffffff' : '#000000';
-      // console.log(`colorIsDark: ${colorIsDark} | textColor: ${textColor}`);
       return(<ColorElement 
         key={uuidv4()} 
         color={color.color} 
@@ -233,7 +230,7 @@ class PaletteForm extends React.Component {
             <DraggableColorList 
               colors={this.state.colors} 
               removeColor={this.removeColor}
-              distance={3} 
+              distance={20} 
               axis='xy'
               onSortEnd={this.onSortEnd}
             />
