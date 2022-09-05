@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 // import './styles/MiniPalette.css';
 import styles from './styles/MiniPaletteStyles';
-import { render } from 'react-dom';
 
 // class MiniPalette extends Component {
 //   render() {
@@ -65,12 +63,13 @@ import { render } from 'react-dom';
 // export default withStyles(styles)(MiniPalette);
 
 
-class MiniPalette extends Component {
+class MiniPalette extends PureComponent {
 
     constructor(props){
         super(props);
         this.state = {};
         this.deletePalette = this.deletePalette.bind(this);
+        this.navigateToRootPalette = this.navigateToRootPalette.bind(this);
     }
 
     deletePalette(e){
@@ -81,10 +80,16 @@ class MiniPalette extends Component {
         this.props.openDeleteDialog(this.props.id);
     }
 
+    navigateToRootPalette(){
+        this.props.handleNavigateToPaletteById(this.props.id);
+    }
+
 
     render(){
 
-        const {paletteName, id, emoji, colors, classes, handleClick} = this.props;
+        const {paletteName, id, emoji, colors, classes} = this.props;
+
+        console.log(`Rendering: ${id}`);
 
         const miniPaletteColors = colors.map(color => (
             <div 
@@ -97,7 +102,7 @@ class MiniPalette extends Component {
         return (
 
             <div className={classes.miniPaletteDisplayFrame}>
-                <div className={classes.miniPalette} onClick={handleClick}>
+                <div className={classes.miniPalette} onClick={this.navigateToRootPalette}>
                     <div className={classes.miniPaletteColorDisplay}>
                         {miniPaletteColors}
                     </div>

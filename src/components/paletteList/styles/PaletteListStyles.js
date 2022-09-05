@@ -1,7 +1,6 @@
 import sizes from '../../../resources/mediaQueryStylesHelper';
-import svgBackground from '../../../assets/svg/subtle-prism-3.svg';
 
-export default {
+const styles = {
     '@global': {
         '.fade-exit': {
             opacity: '1',
@@ -17,13 +16,6 @@ export default {
         display: 'flex',
         flexFlow: 'row nowrap',
         justifyContent: 'center',
-        // backgroundColor: '#0a0a0a',
-        //  background by svgbackgrounds.com 
-        // backgroundImage: `url(${svgBackground})`,
-        // backgroundSize: 'cover',
-        // overflow: 'scroll',
-        // overflowX: 'hidden',
-        // overflowY: 'hidden', 
     },
     
     paletteListConsole: {
@@ -71,22 +63,13 @@ export default {
         padding: '0',
     },
     
-    // paletteListMainTitle: {
-    //     background: 'linear-gradient(to right,#ff0000,#ffa500,#ffff00,#008000,#5c5cf3,#8047aa,#ee82ee,#30CFD0)',
-    //     backgroundClip: 'text',
-    //     webkitTextFillColor: 'transparent',
-    //     fontWeight: '800',
-    //     textTransform: 'uppercase',
-    //     margin: '0',
-    //     padding: '0',
-    // },
-    
     paletteListDisplay: {
         boxSizing: 'border-box',
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 30%)',
         gridGap: '2rem',
+        paddingBottom: '200px !important',
         // margin: '0 auto',
         [sizes.down('sm')]: {
             gridTemplateColumns: 'repeat(2, 50%)',
@@ -96,3 +79,5 @@ export default {
         },
     }
 }
+
+export default styles;

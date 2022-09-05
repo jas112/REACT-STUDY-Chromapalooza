@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import MiniPalette from '../miniPalette/MiniPalette';
 import { withStyles } from '@material-ui/styles';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import List from '@material-ui/core/List';
@@ -30,6 +28,7 @@ class PaletteList extends Component {
         this.handleDeleteDialogOpen = this.handleDeleteDialogOpen.bind(this);
         this.handleDeleteDialogClose = this.handleDeleteDialogClose.bind(this);
         this.confirmPaletteDelete = this.confirmPaletteDelete.bind(this);
+        this.navigateToPaletteById = this.navigateToPaletteById.bind(this);
     }
 
     handleDeleteDialogOpen(id) {
@@ -45,6 +44,10 @@ class PaletteList extends Component {
         this.handleDeleteDialogClose();
     }
 
+    navigateToPaletteById(id){
+        this.props.history.push(`/palette/${id}`);
+    }
+
     generatePalettes(){
         let rootPalettes = this.props.palettes; 
 
@@ -53,7 +56,7 @@ class PaletteList extends Component {
                 <MiniPalette 
                     {...palette} 
                     key={palette.id} 
-                    handleClick={() => this.navigateToPaletteById(palette.id)}
+                    handleNavigateToPaletteById={this.navigateToPaletteById}
                     id={palette.id}
                     // deletePalette={this.props.deletePalette} 
                     openDeleteDialog={this.handleDeleteDialogOpen}
@@ -66,12 +69,9 @@ class PaletteList extends Component {
         return currentPalettes;
     }
 
-    navigateToPaletteById(id){
-        this.props.history.push(`/palette/${id}`);
-    }
   render() {
     const {open, targetPaletteId} = this.state;
-    const {classes, deletePalette} = this.props;
+    const {classes} = this.props;
     const palettes = this.generatePalettes();
     // console.log(`palettes: ${this.props.palettes}`);
     return (
