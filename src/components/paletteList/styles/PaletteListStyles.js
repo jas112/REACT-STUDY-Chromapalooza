@@ -2,6 +2,15 @@ import sizes from '../../../resources/mediaQueryStylesHelper';
 import svgBackground from '../../../assets/svg/subtle-prism-3.svg';
 
 export default {
+    '@global': {
+        '.fade-exit': {
+            opacity: '1',
+        },
+        '.fade-exit-active': {
+            opacity: '0',
+            transition: 'opacity 500ms ease-out',
+        },
+    },
     paletteList: {
         width:'100%',
         height: '100%',

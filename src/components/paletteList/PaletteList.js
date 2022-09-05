@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import MiniPalette from '../miniPalette/MiniPalette';
 import { withStyles } from '@material-ui/styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import './styles/PaletteList.css';
 import styles from './styles/PaletteListStyles';
 
@@ -10,14 +16,15 @@ class PaletteList extends Component {
         let rootPalettes = this.props.palettes; 
 
         let currentPalettes = rootPalettes.map(palette => (
-
-            <MiniPalette 
-                {...palette} 
-                key={palette.id} 
-                handleClick={() => this.navigateToPaletteById(palette.id)}
-                id={palette.id}
-                deletePalette={this.props.deletePalette} 
-            />
+            <CSSTransition key={palette.id} classNames='fade' timeout={500}>
+                <MiniPalette 
+                    {...palette} 
+                    key={palette.id} 
+                    handleClick={() => this.navigateToPaletteById(palette.id)}
+                    id={palette.id}
+                    deletePalette={this.props.deletePalette} 
+                />
+            </CSSTransition>
             // <NavLink style={{color: 'goldenrod'}} to={`/palette/${palette.id}`}>{palette.paletteName}</NavLink>
         ));
 
@@ -46,9 +53,11 @@ class PaletteList extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={classes.paletteListDisplay}>
-                    {palettes}
-                </div>
+                    <TransitionGroup className={classes.paletteListDisplay}>
+
+                        {palettes}
+
+                    </TransitionGroup>
             </div>
         </div>
     )
