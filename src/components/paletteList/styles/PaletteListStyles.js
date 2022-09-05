@@ -1,4 +1,5 @@
 import sizes from '../../../resources/mediaQueryStylesHelper';
+import svgBackground from '../../../assets/svg/subtle-prism-3.svg';
 
 export default {
     paletteList: {
@@ -7,6 +8,13 @@ export default {
         display: 'flex',
         flexFlow: 'row nowrap',
         justifyContent: 'center',
+        // backgroundColor: '#0a0a0a',
+        //  background by svgbackgrounds.com 
+        // backgroundImage: `url(${svgBackground})`,
+        // backgroundSize: 'cover',
+        // overflow: 'scroll',
+        // overflowX: 'hidden',
+        // overflowY: 'hidden', 
     },
     
     paletteListConsole: {
@@ -69,7 +77,8 @@ export default {
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '1.5rem',
+        gridGap: '2rem',
+        // margin: '0 auto',
         [sizes.down('sm')]: {
             gridTemplateColumns: 'repeat(2, 50%)',
         },

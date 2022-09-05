@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom'
+import { withStyles } from '@material-ui/styles';
 import Palette from './components/palette/Palette';
 import PaletteList from './components/paletteList/PaletteList';
 import PaletteForm from './components/paletteForm/PaletteForm';
@@ -67,7 +68,7 @@ class App extends Component {
     // console.log(generateColorPalette(seedPalettes[4]))
 
     return (
-      <div className="App">
+      <div className='App'>
         <Switch>
           <Route exact path='/' render={(routeProps) => <PaletteList palettes={availablePalettes} {...routeProps} deletePalette={this.deletePalette}/>} />
           {/* <Route exact path='/palette/:id' render={routeProps => (<Palette {...routeProps} />)}/> */}

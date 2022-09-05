@@ -7,6 +7,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #101010;
+  background-Image: url('../src/assets/imgs/subtle-prism.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background by svgbackgrounds.com  */
+  /* background-Image: url('../src/assets/svg/subtle-prism.svg'); */
+  /* overflow: scroll; */
   /* background-image: url('./assets/imgs/david-trinks-bg.jpg');*//* background image by David Trinks on unspash. */
   /* background-image: url('./assets/imgs/gradienta-bg-1.jpg');*//* background image by Gradienta on unspash. */
   /*background-image: url('./assets/imgs/gradienta-bg-2.jpg');*//* background image by Gradienta on unspash. */

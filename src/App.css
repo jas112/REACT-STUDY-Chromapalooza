@@ -1,4 +1,10 @@
 .App {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../src/assets/svg/subtle-prism-3.svg');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
   text-align: center;
   background-color: #282c34;
 }

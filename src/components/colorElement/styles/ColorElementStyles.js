@@ -14,6 +14,7 @@ const styles = {
         fontSize: '14px',
         display: 'inline-block',
         cursor: 'pointer',
+        backgroundColor: '#101010',
         '&:hover': {
             border: '2px solid goldenrod',
         },
