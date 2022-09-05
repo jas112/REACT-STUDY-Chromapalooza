@@ -48,6 +48,7 @@ class PaletteFormPaletteNameDialog extends Component {
         };
 
         this.props.handleSubmit(paletteMetaData);
+        this.handleClose();
     }
     
     handleClose() {
