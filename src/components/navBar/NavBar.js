@@ -24,7 +24,7 @@ class NavBar extends Component {
   generateNavBarSelect(){
     return (
       <div className={this.props.classes.navBarSelect}>
-        <Select onChange={this.props.changeColorFormat} defaultValue={this.props.currentColorFormat}>
+        <Select onChange={this.props.changeColorFormat} defaultValue={this.props.currentColorFormat} className={this.props.classes.navBarSelectEle}>
             <MenuItem value='hex'>HEX - #ffffff</MenuItem>
             <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
             <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>

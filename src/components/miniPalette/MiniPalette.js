@@ -77,7 +77,8 @@ class MiniPalette extends Component {
 
         e.stopPropagation();
         console.log(`deleting palette...${this.props.id}`);
-        this.props.deletePalette(this.props.id);
+        // this.props.deletePalette(this.props.id);
+        this.props.openDeleteDialog(this.props.id);
     }
 
 

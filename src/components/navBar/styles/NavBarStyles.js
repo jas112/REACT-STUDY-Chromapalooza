@@ -10,6 +10,20 @@ export default {
         alignItems: 'center',
         color: '#daa520',
         backgroundColor: '#1f1f1f',
+        '& .MuiInputBase-root': {
+            color: '#ffffff',
+        },
+        '& .MuiInputBase-root, .MuiList-root': {
+            backgroundColor: '#2f2f2f !important',
+            border: 'none !important',
+        },
+        '& .MuiInputBase-root, .MuiSelect-icon': {
+            paddingLeft: '10px !important',
+            color:'#ffa500 !important',
+        },
+        '& .MuiMenuItem-root': {
+            color:'#ffa500 !important',
+        },
         [sizes.down('xs')]: {
             height: '10vh',
             flexFlow: 'column nowrap',
@@ -126,6 +140,27 @@ export default {
             width: '100%',
             justifyContent: 'center',
             padding: '10px 10px 15px',
+        },
+    },
+
+    navBarSelectEle: {
+        '& .MuiInputBase-root': {
+            color:'#ffffff',
+            width:'250px !important',
+            [sizes.down('xs')]: {
+                width: '90% !important',
+            },
+        },
+        '& .MuiInputBase-root, .MuiList-root': {
+            backgroundColor: '#2f2f2f !important',
+            border: 'none !important',
+        },
+        '& .MuiInputBase-root, .MuiSelect-icon': {
+            paddingLeft: '10px !important',
+            color:'#ffa500 !important',
+        },
+        '& .MuiMenuItem-root': {
+            color:'#ffa500 !important',
         },
     },
     
